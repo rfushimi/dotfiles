@@ -7,6 +7,7 @@ function update-dotfiles() {
     git push -u origin main
     echo "done"
 
+{{ if eq .chezmoi.username "fushimi" }}
     echo "syncing corp dotfiles..."
     cd $HOME/corp-dotfiles
     git add .
@@ -14,4 +15,5 @@ function update-dotfiles() {
     git pull origin main
     git push -u origin main
     echo "done"
+{{ end }}
 }
