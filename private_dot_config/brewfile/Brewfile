@@ -142,6 +142,7 @@ brew nettle
 brew nlohmann-json
 brew node
 brew node@20
+brew ntfy
 brew oniguruma
 brew opencore-amr
 brew openexr
@@ -156,6 +157,7 @@ brew pdm
 brew pixman
 brew pkgconf
 brew pnpm
+brew podman
 brew proj
 brew protobuf
 brew pugixml
@@ -238,6 +240,9 @@ tap homebrew-ffmpeg/ffmpeg
 
 tap rcmdnk/file
 brew brew-file
+
+tap rfushimi/tools
+brew q
 
 # App Store applications
 appstore 302584613 Amazon Kindle (7.18)
