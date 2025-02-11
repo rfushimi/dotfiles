@@ -10,6 +10,7 @@ brew autoconf
 brew automake
 brew bash-completion
 brew bdw-gc
+brew bitwarden-cli
 brew boost
 brew brotli
 brew c-ares
