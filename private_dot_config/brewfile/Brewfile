@@ -181,6 +181,7 @@ brew sqlite
 brew srt
 brew svt-av1
 brew syncthing
+brew task
 brew tesseract
 brew texi2html
 brew theora
@@ -189,6 +190,7 @@ brew tree
 brew unbound
 brew utf8cpp
 brew vim
+brew vit
 brew vtk
 brew watch
 brew webp
