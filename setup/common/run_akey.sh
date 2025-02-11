@@ -11,4 +11,5 @@ if [[ ! -f $HOME/.ssh/akey ]]; then
         exit 1
     fi
     bw get item akey | jq -r '.notes' > $HOME/.ssh/akey
+    chmod 600 $HOME/.ssh/akey
 fi
