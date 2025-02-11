@@ -10,7 +10,11 @@ if [[ ! -f $HOME/.ssh/akey ]]; then
         exit 1
     fi
     bw login fushimi.ryohei@gmail.com
-    export BW_SESSION=$(bw unlock --raw)
-    bw get item akey | jq -r '.notes' > $HOME/.ssh/akey
+    BW_SESSION=$(bw unlock --raw)
+    KEY=$(bw get item akey | jq -r '.notes')
+    if [ -n "$KEY" ]; then
+        echo "$KEY" > "$HOME/.ssh/akey"
+        echo "SSH key installed to $HOME/.ssh/akey"
+    fi
     chmod 600 $HOME/.ssh/akey
 fi
