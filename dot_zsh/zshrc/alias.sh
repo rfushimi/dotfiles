@@ -11,7 +11,7 @@ alias w="npx wrangler"
 alias ls='ls --color=auto'
 alias ll='ls -lAh --time-style=long-iso --color=auto'
 
-alias ud="sd dot update; chezmoi apply; source ~/.zshrc"
+alias ud="update-dotfiles"
 alias code-chezmoi="code ~/.local/share/chezmoi/"
 alias code-sd="code ~/src/scripts"
 alias sz="source ~/.zshrc"
