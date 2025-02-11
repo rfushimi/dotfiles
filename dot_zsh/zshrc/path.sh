@@ -12,9 +12,12 @@ export XDG_STATE_HOME
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
+
 # rcmdnk/file/brew-file
-if [ -f $(brew --prefix)/etc/brew-wrap ]; then
-    source $(brew --prefix)/etc/brew-wrap
+if [ -d /opt/homebrew ]; then
+    if [ -f $(brew --prefix)/etc/brew-wrap ]; then
+        source $(brew --prefix)/etc/brew-wrap
+    fi
 fi
 
 # User specific paths
