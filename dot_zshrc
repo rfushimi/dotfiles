@@ -65,7 +65,7 @@ autoload -Uz compinit && compinit -D
 . "$HOME/.local/share/../bin/env"
 
 # pnpm
-export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export PNPM_HOME="/home/ryohei/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
