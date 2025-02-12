@@ -184,6 +184,7 @@ brew srt
 brew svt-av1
 brew syncthing
 brew task
+brew task@2
 brew tesseract
 brew texi2html
 brew theora
