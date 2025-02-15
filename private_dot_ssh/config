@@ -26,8 +26,8 @@ Host m100
     IdentityFile ~/.ssh/akey
 
 Host windows
-    User fushi
-    HostName 100.73.233.12
+    User ryohei
+    HostName 100.79.249.42
     IdentityFile ~/.ssh/akey
 
 Host mac-studio

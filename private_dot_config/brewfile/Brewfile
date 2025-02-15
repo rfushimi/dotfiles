@@ -195,6 +195,7 @@ brew utf8cpp
 brew vim
 brew vit
 brew vtk
+brew wakeonlan
 brew watch
 brew webp
 brew wget
