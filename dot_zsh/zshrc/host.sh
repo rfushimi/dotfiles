@@ -15,7 +15,7 @@ function prompt_host_short() {
     hostname_short="macpro"
     hostname_color=7
   elif [[ "$HOST" == *"m-100"* ]]; then
-    hostname_short="MiniPC"
+    hostname_short="ubuntu"
     hostname_color=6
   elif [[ "$HOST" == *"macbookair"* ]]; then
     hostname_short="MacBook"
