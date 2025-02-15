@@ -10,16 +10,19 @@ function prompt_host_short() {
   local hostname_color
   if [[ "$HOST" == *"fushimi-macbook"* ]]; then
     hostname_short="macbook"
-    hostname_color=12
-  elif [[ "$HOST" == *"m-100"* ]]; then
-    hostname_short="MiniPC"
-    hostname_color=15
-  elif [[ "$HOST" == *"MBA"* ]]; then
-    hostname_short="MacBook"
-    hostname_color=34
+    hostname_color=8
   elif [[ "$HOST" == *"fushimi-mac"* ]]; then
     hostname_short="macpro"
-    hostname_color=13
+    hostname_color=7
+  elif [[ "$HOST" == *"m-100"* ]]; then
+    hostname_short="MiniPC"
+    hostname_color=6
+  elif [[ "$HOST" == *"macbookair"* ]]; then
+    hostname_short="MacBook"
+    hostname_color=5
+  elif [[ "$HOST" == *"Studio"* ]]; then
+    hostname_short="MacStudio"
+    hostname_color=4
   elif [[ "$HOST" == *".c."* ]]; then
     hostname_short="glinux"
     hostname_color=1
