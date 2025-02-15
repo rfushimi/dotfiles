@@ -8,3 +8,5 @@ setopt HIST_SAVE_NO_DUPS
 
 # コマンド実行後すぐに履歴ファイルへ追記
 setopt inc_append_history
+
+export SD_EDITOR="code --wait"

@@ -19,9 +19,15 @@ Host proxmox
     User root
     HostName 100.82.129.76
     IdentityFile ~/.ssh/akey
+
 Host m100
     User ryohei
-    HostName 192.168.68.59
+    HostName 100.123.33.117
+    IdentityFile ~/.ssh/akey
+
+Host windows
+    User fushi
+    HostName 100.73.233.12
     IdentityFile ~/.ssh/akey
 
 Host mac-studio
