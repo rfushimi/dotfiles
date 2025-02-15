@@ -14,9 +14,9 @@ function prompt_host_short() {
   elif [[ "$HOST" == *"m-100"* ]]; then
     hostname_short="MiniPC"
     hostname_color=15
-  elif [[ "$HOST" == *"macbookair"* ]]; then
+  elif [[ "$HOST" == *"MBA"* ]]; then
     hostname_short="MacBook"
-    hostname_color=15
+    hostname_color=34
   elif [[ "$HOST" == *"fushimi-mac"* ]]; then
     hostname_short="macpro"
     hostname_color=13
@@ -25,7 +25,7 @@ function prompt_host_short() {
     hostname_color=1
   else
     hostname_short="$HOST"
-    hostname_color=10
+    hostname_color=3
   fi
   p10k segment -f $hostname_color -t "$hostname_short"
 }
