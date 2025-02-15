@@ -25,7 +25,7 @@ function prompt_host_short() {
     hostname_color=1
   else
     hostname_short="$HOST"
-    hostname_color=3
+    hostname_color=10
   fi
   p10k segment -f $hostname_color -t "$hostname_short"
 }
