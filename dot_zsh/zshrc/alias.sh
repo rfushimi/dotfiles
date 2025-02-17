@@ -19,3 +19,6 @@ alias zs="source ~/.zshrc"
 alias docker="podman"
 alias docker-compose="podman-compose"
 alias wol="sudo wakeonlan 10:FF:E0:6D:46:32"
+alias activate="source .venv/bin/activate"
+alias a="source .venv/bin/activate"
+
