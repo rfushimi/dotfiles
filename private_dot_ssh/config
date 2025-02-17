@@ -28,6 +28,7 @@ Host m100
 Host windows
     User ryohei
     HostName 100.79.249.42
+    Port 10022
     IdentityFile ~/.ssh/akey
 
 Host mac-studio
