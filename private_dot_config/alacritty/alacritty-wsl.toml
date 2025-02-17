@@ -1,0 +1,2 @@
+[terminal.shell]
+program = "/Windows/System32/wsl.exe ~"

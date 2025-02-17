@@ -1,0 +1,14 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+
+mkdir -p $(wslupath -A)/alacritty
+
+COMMON_CONFIG=$(wslpath -w ~/.config/alacritty/alacritty.toml | sed 's|\\|/|g')
+WINDOWS_CONFIG=$(wslpath -w ~/.config/alacritty/alacritty-wsl.toml | sed 's|\\|/|g')
+
+echo -e "[general]\nimport=[\"$COMMON_CONFIG\",\"$WINDOWS_CONFIG\"]" > $(wslupath -A)/alacritty/alacritty.toml
+touch $(wslupath -A)/alacritty/alacritty.toml
+
+{{   end }}
+{{ end }}
