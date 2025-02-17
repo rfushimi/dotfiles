@@ -1,0 +1,4 @@
+" vim内の文字コード設定
+set encoding=utf-8       " 内部エンコーディングの設定
+set fileencoding=utf-8   " ファイル保存時のエンコーディング
+set termencoding=utf-8   " 端末とのやり取りで使用するエンコーディング
