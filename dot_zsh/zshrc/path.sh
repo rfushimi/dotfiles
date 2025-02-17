@@ -24,6 +24,11 @@ fi
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.uv/bin:$PATH"
+# export PATH="$HOME/.uv/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
+
+# CUDA (WSL2)
+# https://zenn.dev/yumefuku/articles/wsl2-llm-install
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
