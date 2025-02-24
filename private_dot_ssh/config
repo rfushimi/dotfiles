@@ -26,15 +26,15 @@ Host m100
     IdentityFile ~/.ssh/akey
 
 Host windows
-    User fushi
-    HostName 100.73.233.12
+    User ryohei
+    HostName 100.124.160.83
     Port 22
     IdentityFile ~/.ssh/akey
 
 Host wsl
     User ryohei
-    HostName 100.79.249.42
-    Port 10022
+    HostName 100.68.46.26
+    Port 22
     IdentityFile ~/.ssh/akey
 
 Host mac-studio
