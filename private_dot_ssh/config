@@ -46,7 +46,7 @@ Host github.com
     IdentityFile ~/.ssh/akey
 
 # Router configuration
-# Host router
-#      HostName 192.168.1.11
-#      User admin
-#      Port 22
+Host router
+     HostName 100.78.36.73 
+     User root
+     Port 22
