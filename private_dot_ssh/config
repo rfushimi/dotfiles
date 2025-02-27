@@ -34,7 +34,7 @@ Host windows
 Host wsl
     User ryohei
     HostName 100.68.46.26
-    Port 22
+    Port 10022
     IdentityFile ~/.ssh/akey
 
 Host mac-studio
@@ -45,8 +45,8 @@ Host mac-studio
 Host github.com
     IdentityFile ~/.ssh/akey
 
-# Router configuration
 Host router
-     HostName 100.78.36.73 
-     User root
-     Port 22
+    HostName 100.78.36.73 
+    User root
+    Port 22
+# Router configuration
