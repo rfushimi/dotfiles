@@ -182,6 +182,7 @@ brew speex
 brew sqlite
 brew srt
 brew svt-av1
+brew swiftlint
 brew syncthing
 brew task
 brew task@2
