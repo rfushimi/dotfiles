@@ -10,3 +10,4 @@ setopt HIST_SAVE_NO_DUPS
 setopt inc_append_history
 
 export SD_EDITOR="code --wait"
+export UV_PYTHON=3.11
