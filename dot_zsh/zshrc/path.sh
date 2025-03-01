@@ -27,6 +27,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export PATH="$HOME/.uv/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
+export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
 
 # CUDA (WSL2)
 # https://zenn.dev/yumefuku/articles/wsl2-llm-install
