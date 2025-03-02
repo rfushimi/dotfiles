@@ -16,8 +16,5 @@ alias code-chezmoi="code ~/.local/share/chezmoi/"
 alias code-sd="code ~/src/scripts"
 alias sz="source ~/.zshrc"
 alias zs="source ~/.zshrc"
-alias docker="podman"
-alias docker-compose="podman-compose"
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
-
