@@ -13,7 +13,6 @@ Host source.developers.google.com
 Host = main edit
     Hostname fushimi.c.googlers.com
     RemoteCommand shpool attach -f %k
-    RequestTTY yes
   
 Host proxmox
     User root
