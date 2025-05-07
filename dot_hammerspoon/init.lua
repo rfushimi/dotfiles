@@ -1,7 +1,18 @@
 hs = hs
-hs.loadSpoon("AClock")
 
-
-hs.hotkey.bind({"cmd", "shift"}, "I", function ()
-    hs.spoon.AClock:toggleShow()
+hs.hotkey.bind({"cmd"}, "Escape", function ()
+    -- Open Chrome
+    hs.application.launchOrFocus("iTerm")
+end)
+hs.hotkey.bind({"cmd"}, "1", function ()
+    -- Open Chrome
+    hs.application.launchOrFocus("Cider")
+end)
+hs.hotkey.bind({"cmd"}, "2", function ()
+    -- Open Chrome
+    hs.application.launchOrFocus("Gemini")
+end)
+hs.hotkey.bind({"cmd"}, "3", function ()
+    -- Open Chrome
+    hs.application.launchOrFocus("Duckie")
 end)
