@@ -1,0 +1,163 @@
+#!/bin/bash
+
+#================================================================
+# mp4-to-gif.sh
+#
+# MP4動画ファイルを最適化されたGIFアニメーションに変換するスクリプト
+#
+# 機能:
+# - 2パスエンコーディングによるカラーパレットの最適化
+# - 解像度とフレームレートの指定
+# - ファイルサイズの削減
+#
+# 依存関係:
+# - ffmpeg
+#
+# 使い方:
+# ./mp4-to-gif.sh -i <入力ファイル.mp4> [オプション]
+#
+# オプション:
+# -i, --input:  入力するMP4ファイル (必須)
+# -o, --output: 出力するGIFファイル名 (任意, デフォルト: <入力ファイル名>.gif)
+# -s, --scale:  解像度のスケール (任意, デフォルト: 0.5)
+# -f, --fps:    フレームレート (任意, デフォルト: 10)
+# -h, --help:   ヘルプメッセージを表示
+#================================================================
+
+# --- デフォルト値の設定 ---
+SCALE="0.5"
+FPS="10"
+OUTPUT_FILE=""
+
+# --- ヘルプメッセージを表示する関数 ---
+show_help() {
+    echo "使い方: $0 -i <入力ファイル.mp4> [オプション]"
+    echo ""
+    echo "オプション:"
+    echo "  -i, --input <file>    入力するMP4ファイル (必須)"
+    echo "  -o, --output <file>   出力するGIFファイル名 (デフォルト: <入力ファイル名>.gif)"
+    echo "  -s, --scale <value>   解像度のスケール (例: 0.5 で50%) (デフォルト: ${SCALE})"
+    echo "  -f, --fps <value>     フレームレート (デフォルト: ${FPS})"
+    echo "  -h, --help            このヘルプメッセージを表示"
+    echo ""
+    echo "例: ./$0 -i video.mp4 -s 0.7 -f 12"
+}
+
+# --- コマンドライン引数の解析 ---
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+    -i | --input)
+        INPUT_FILE="$2"
+        shift # 引数を消費
+        shift # 値を消費
+        ;;
+    -o | --output)
+        OUTPUT_FILE="$2"
+        shift
+        shift
+        ;;
+    -s | --scale)
+        SCALE="$2"
+        shift
+        shift
+        ;;
+    -f | --fps)
+        FPS="$2"
+        shift
+        shift
+        ;;
+    -h | --help)
+        show_help
+        exit 0
+        ;;
+    *)
+        # 不明なオプション
+        echo "不明なオプション: $1"
+        show_help
+        exit 1
+        ;;
+    esac
+done
+
+# --- 必須項目のチェック ---
+
+# ffmpegがインストールされているか確認
+if ! command -v ffmpeg &>/dev/null; then
+    echo "エラー: このスクリプトの実行にはffmpegが必要です。"
+    echo "ffmpegをインストールしてください。"
+    exit 1
+fi
+
+# 入力ファイルが指定されているか確認
+if [ -z "$INPUT_FILE" ]; then
+    echo "エラー: 入力ファイルが指定されていません。"
+    show_help
+    exit 1
+fi
+
+# 入力ファイルが存在するか確認
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "エラー: 入力ファイルが見つかりません: $INPUT_FILE"
+    exit 1
+fi
+
+# --- ファイル名の設定 ---
+# 出力ファイル名が指定されていない場合、入力ファイル名から生成
+if [ -z "$OUTPUT_FILE" ]; then
+    FILENAME=$(basename -- "$INPUT_FILE")
+    EXTENSION="${FILENAME##*.}"
+    FILENAME_NO_EXT="${FILENAME%.*}"
+    OUTPUT_FILE="${FILENAME_NO_EXT}.gif"
+fi
+
+# 一時的なパレットファイル名
+PALETTE_FILE="/tmp/palette_$(date +%s).png"
+
+# --- 変換処理の実行 ---
+
+echo "GIF変換を開始します..."
+echo "---------------------------------"
+echo "入力ファイル:   $INPUT_FILE"
+echo "出力ファイル:   $OUTPUT_FILE"
+echo "解像度スケール: $SCALE"
+echo "フレームレート: $FPS"
+echo "---------------------------------"
+
+# ビデオフィルタの共通設定
+# scaleの第2引数を-1にすることで、アスペクト比を維持したままリサイズします。
+# flags=lanczos は高品質なリサイズアルゴリズムです。
+FILTERS="fps=${FPS},scale=iw*${SCALE}:-1:flags=lanczos"
+
+# --- 1パス目: 最適化されたカラーパレットの生成 ---
+echo "[1/2] 最適なカラーパレットを生成中..."
+ffmpeg -v warning -i "$INPUT_FILE" -vf "${FILTERS},palettegen=stats_mode=full" -y "$PALETTE_FILE"
+if [ $? -ne 0 ]; then
+    echo "エラー: パレットの生成に失敗しました。"
+    rm -f "$PALETTE_FILE"
+    exit 1
+fi
+echo "パレット生成完了: $PALETTE_FILE"
+
+# --- 2パス目: パレットを使用してGIFを生成 ---
+echo "[2/2] パレットを使用してGIFを生成中..."
+# lavfi (complex filtergraph) を使用して、動画とパレットを両方入力とします。
+# [0:v] は1番目の入力(動画)のビデオストリーム、[1:v] は2番目の入力(パレット)のビデオストリームを指します。
+# paletteuseのditherオプションで、ディザリング（疑似階調）のアルゴリズムを指定できます。
+ffmpeg -v warning -i "$INPUT_FILE" -i "$PALETTE_FILE" -lavfi "${FILTERS}[x]; [x][1:v]paletteuse=dither=sierra2_4a" -y "$OUTPUT_FILE"
+if [ $? -ne 0 ]; then
+    echo "エラー: GIFの生成に失敗しました。"
+    rm -f "$PALETTE_FILE"
+    exit 1
+fi
+
+# --- 後処理 ---
+# 一時的なパレットファイルを削除
+rm -f "$PALETTE_FILE"
+
+echo "---------------------------------"
+echo "🎉 変換が正常に完了しました！"
+echo "出力ファイル: $OUTPUT_FILE"
+echo "---------------------------------"
+
+exit 0
