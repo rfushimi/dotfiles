@@ -11,7 +11,7 @@ Host source.developers.google.com
     IdentityFile ~/.ssh/id_ed25519
 
 Host = main edit
-    Hostname fushimi.c.googlers.com
+    Hostname fushimi-tok.c.googlers.com
     RemoteCommand shpool attach -f %k
   
 Host proxmox
