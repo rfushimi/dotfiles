@@ -2,7 +2,7 @@ hs = hs
 
 hs.hotkey.bind({"cmd"}, "Escape", function ()
     -- Open Chrome
-    hs.application.launchOrFocus("iTerm")
+    hs.application.launchOrFocus("Google Chrome")
 end)
 hs.hotkey.bind({"cmd"}, "1", function ()
     -- Open Chrome
