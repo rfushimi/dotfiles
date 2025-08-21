@@ -23,10 +23,6 @@ man-find() {
   f=$(fd . $MANPATH/man${1:-1} -t f -x echo {/.} | fzf) && man $f
 }
 
-# if command -v fzf >/dev/null 2>&1; then
-#   source <(fzf --zsh)
-# fi
-
 function fzf-select-history() {
   BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
   CURSOR=$#BUFFER

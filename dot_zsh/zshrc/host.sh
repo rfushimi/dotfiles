@@ -8,12 +8,9 @@
 function prompt_host_short() {
   local hostname_short
   local hostname_color
-  if [[ "$HOST" == *"fushimi-macbook"* ]]; then
-    hostname_short="macbook"
+  if [[ "$HOST" == *"mac"* ]]; then
+    hostname_short="mac"
     hostname_color=8
-  elif [[ "$HOST" == *"fushimi-mac"* ]]; then
-    hostname_short="macpro"
-    hostname_color=7
   elif [[ "$HOST" == *"m-100"* ]]; then
     hostname_short="ubuntu"
     hostname_color=6
