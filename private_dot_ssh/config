@@ -54,4 +54,4 @@ Host main-tmux
     Hostname fushimi-tok.c.googlers.com
     RequestTTY yes
     # Check gcert status, refresh if less than 1h remaining
-    RemoteCommand /bin/bash -c "gcertstatus -nocheck_ssh -check_remaining=1h || gcert; { tmx2 -CC new -A -s main & disown; }"
+    RemoteCommand /bin/bash -c "gcertstatus -nocheck_ssh -check_remaining=1h || gcert; tmx2 -CC new -A -s main"
