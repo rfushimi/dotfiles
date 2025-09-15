@@ -44,7 +44,6 @@ brew gawk
 brew gcc
 brew gettext
 brew gh
-brew ghostscript
 brew giflib
 brew git
 brew glib
@@ -63,12 +62,12 @@ brew highway
 brew hunspell
 brew hyperfine
 brew icu4c@76
+brew icu4c@77
 brew imagemagick
 brew imath
 brew ipython
 brew isl
 brew jasper
-brew jbig2dec
 brew jpeg-turbo
 brew jpeg-xl
 brew jq
@@ -84,10 +83,9 @@ brew libbluray
 brew libde265
 brew libdeflate
 brew libevent
-brew libgit2@1.8
+brew libgit2
 brew libharu
 brew libheif
-brew libidn
 brew libidn2
 brew liblqr
 brew libmicrohttpd
@@ -110,6 +108,7 @@ brew libtiff
 brew libtool
 brew libunibreak
 brew libunistring
+brew libusb
 brew libuv
 brew libvidstab
 brew libvmaf
@@ -162,7 +161,6 @@ brew proj
 brew protobuf
 brew pugixml
 brew pyqt
-brew python-packaging
 brew python@3.12
 brew python@3.13
 brew qt
@@ -173,6 +171,7 @@ brew rubberband
 brew ruby
 brew rust
 brew rye
+brew scrcpy
 brew sdl12-compat
 brew sdl2
 brew shared-mime-info
@@ -206,6 +205,7 @@ brew xorgproto
 brew xvid
 brew xz
 brew yarn
+brew yt-dlp
 brew z3
 brew zeromq
 brew zimg
@@ -215,12 +215,13 @@ brew zstd
 tap homebrew/cask
 cask adobe-creative-cloud
 cask alacritty
+cask android-platform-tools
 cask bitwarden
 cask coteditor
 cask discord
 cask font-hackgen
+cask gcloud-cli
 cask google-chrome
-cask google-cloud-sdk
 cask google-japanese-ime
 cask iterm2
 cask karabiner-elements
@@ -233,7 +234,7 @@ cask obs
 cask obsidian
 cask raycast
 cask slack
-cask syncthing
+cask syncthing-app
 cask visual-studio-code
 cask vlc
 cask xquartz
@@ -248,24 +249,24 @@ brew brew-file
 tap rfushimi/tools
 
 # App Store applications
-appstore 302584613 Amazon Kindle (7.18)
-appstore 1352778147 Bitwarden (2025.2.0)
-appstore 1500855883 CapCut (5.7.0)
-appstore 1024640650 CotEditor (5.0.8)
-appstore 640199958 Developer (10.7.1)
-appstore 1380563956 Dictionaries (1.2.61)
-appstore 975937182 Fantastical (4.0.5)
-appstore 1358823008 Flighty (4.4.0)
+appstore 302584613 Amazon Kindle (7.40.1)
+appstore 1352778147 Bitwarden (2025.8.2)
+appstore 1500855883 CapCut (6.9.0)
+appstore 1024640650 CotEditor (5.2.3)
+appstore 640199958 Developer (10.8.3)
+appstore 1380563956 Dictionaries (1.2.67)
+appstore 975937182 Fantastical (4.0.18)
+appstore 1358823008 Flighty (4.5.2)
 appstore 682658836 GarageBand (10.4.12)
-appstore 1111570163 GrandPerspective (3.5.1)
+appstore 1111570163 GrandPerspective (3.5.3)
 appstore 975890633 HotKey (1.5)
 appstore 408981434 iMovie (10.4.3)
-appstore 409183694 Keynote (14.3)
-appstore 539883307 LINE (9.6.1)
-appstore 409203825 Numbers (14.3)
-appstore 409201541 Pages (14.3)
-appstore 545519333 Prime Video (10.63)
-appstore 1475387142 Tailscale (1.80.2)
-appstore 425424353 The Unarchiver (4.3.8)
-appstore 904280696 Things3 (3.21.5)
-appstore 497799835 Xcode (16.2)
+appstore 409183694 Keynote (14.4)
+appstore 539883307 LINE (9.11.0)
+appstore 409203825 Numbers (14.4)
+appstore 409201541 Pages (14.4)
+appstore 545519333 Prime Video (10.95)
+appstore 1475387142 Tailscale (1.86.4)
+appstore 425424353 The Unarchiver (4.3.9)
+appstore 904280696 Things3 (3.21.15)
+appstore 497799835 Xcode (16.4)
