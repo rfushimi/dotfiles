@@ -11,7 +11,7 @@ Host source.developers.google.com
     IdentityFile ~/.ssh/id_ed25519
 
 Host = main edit
-    Hostname fushimi-tok.c.googlers.com
+    Hostname fushimi.c.googlers.com
     RemoteCommand shpool attach -f %k
   
 Host proxmox
@@ -51,7 +51,7 @@ Host router
 # Router configuration
 
 Host main-tmux
-    Hostname fushimi-tok.c.googlers.com
+    Hostname fushimi.c.googlers.com
     RequestTTY yes
     # Check gcert status, refresh if less than 1h remaining
     RemoteCommand /bin/bash -c "gcertstatus -nocheck_ssh -check_remaining=1h || gcert; tmx2 -CC new -A -s main"

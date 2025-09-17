@@ -3986,7 +3986,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string>ssh fushimi-tok.c.googlers.com -t 'gcertstatus &amp;&amp; cd /google/src/cloud/fushimi/images/google3 &amp;&amp; /google/bin/releases/gemini-cli/tools/gemini --gfg'</string>
+<string>ssh fushimi.c.googlers.com -t 'gcertstatus &amp;&amp; cd /google/src/cloud/fushimi/images/google3 &amp;&amp; /google/bin/releases/gemini-cli/tools/gemini --gfg'</string>
 			<key>Cursor Boost (Dark)</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
