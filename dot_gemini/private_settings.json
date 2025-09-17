@@ -1,0 +1,99 @@
+{
+  "excludeTools": [
+    "glob",
+    "search_file_content"
+  ],
+  "extensions": {
+    "disabled": [],
+    "workspacesWithMigrationNudge": [
+      "/usr/local/google/home/fushimi"
+    ]
+  },
+  "fileFiltering": {
+    "enableRecursiveFileSearch": false
+  },
+  "tools": {
+    "allowed": [
+      "get_spreadsheets",
+      "list_worksheets",
+      "get_sheet_content",
+      "read_drive_file",
+      "read_document",
+      "copy_drive_file",
+      "replace_paragraph",
+      "get_xmanager_experiment_details",
+      "get_xmanager_experiments_for_user",
+      "get_xmanager_user_resource_availability",
+      "list_artifacts",
+      "get_xmanager_parameter_config",
+      "get_xmanager_user_command",
+      "get_xmanager_work_units",
+      "get_xmanager_s2_collection_details",
+      "restart_xmanager_work_units",
+      "get_xmanager_error_logs",
+      "internal_search",
+      "post_comment",
+      "get_comments",
+      "get_analysis",
+      "search_changelists",
+      "search_for_files_codesearch",
+      "buganizer_get_bugs",
+      "buganizer_list_components",
+      "buganizer_render_issue",
+      "buganizer_create_issue",
+      "buganizer_reassign_issue",
+      "buganizer_add_comment",
+      "buganizer_add_issue_parent",
+      "buganizer_remove_issue_parent",
+      "buganizer_add_issue_to_hotlist",
+      "buganizer_update_issue_priority",
+      "buganizer_update_issue_status",
+      "buganizer_set_issue_custom_field",
+      "buganizer_edit_title",
+      "create_workspace",
+      "create_changelist",
+      "update_changelist",
+      "list_workspaces",
+      "get_workspace_for_cl",
+      "get_current_workspace",
+      "update_reviewer",
+      "run_debugging_agent",
+      "create_gpaste",
+      "update_gpaste",
+      "get_gpaste",
+      "get_calendar_events",
+      "add_xid_to_evalhub_group",
+      "get_evalhub_run",
+      "read_sponge_test_logs",
+      "read_sponge_test_failure_logs",
+      "search_yaqs",
+      "get_yaqs_question",
+      "render_graphviz_graph",
+      "ShellTool(blaze)",
+      "ShellTool(build_cleaner)",
+      "ShellTool(g4)",
+      "ShellTool(hg)",
+    ]
+  },
+  "mcpServers": {
+    "g3mcp": {
+      "type": "stdio",
+      "command": "blaze",
+      "args": [
+        "run",
+        "//experimental/users/fushimi/mcp:mcp"
+      ],
+      "timeout": 60000
+    }
+  },
+  "theme": "Default",
+  "ui": {
+    "accessibility": {
+      "disableLoadingPhrases": true
+    }
+  },
+  "accessibility": {
+    "disableLoadingPhrases": true
+  },
+  "selectedAuthType": "gemini-api-key"
+}
