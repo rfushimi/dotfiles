@@ -1,4 +1,6 @@
+## Top-level instructions
 
+- To notify me to get my attention when you require my input, run `/google/bin/releases/g3n-team/notify_self` with the parameter `--message` set to a summary of the notification, not exceeding 100 chars. If there is a call to action URL, pass that in with `--uri` parameter.
 
 - When there are paths to code in documents or instructions, please read the code whenever possible before responding. Also, if understanding that code requires reading other code, please do so.
 - After reviewing a CL diff, be sure to read the original file, not just the diff, for key files to understand the context.
