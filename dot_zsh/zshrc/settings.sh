@@ -11,3 +11,4 @@ setopt inc_append_history
 
 export SD_EDITOR="code --wait"
 export UV_PYTHON=3.11
+setopt auto_cd
