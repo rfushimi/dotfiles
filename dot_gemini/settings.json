@@ -1,17 +1,4 @@
 {
-  "excludeTools": [
-    "glob",
-    "search_file_content"
-  ],
-  "extensions": {
-    "disabled": [],
-    "workspacesWithMigrationNudge": [
-      "/usr/local/google/home/fushimi"
-    ]
-  },
-  "fileFiltering": {
-    "enableRecursiveFileSearch": false
-  },
   "tools": {
     "allowed": [
       "get_spreadsheets",
@@ -32,8 +19,8 @@
       "restart_xmanager_work_units",
       "get_xmanager_error_logs",
       "internal_search",
-      "post_comment",
       "get_comments",
+      "get_critique_comments",
       "get_analysis",
       "search_changelists",
       "search_for_files_codesearch",
@@ -52,11 +39,9 @@
       "buganizer_edit_title",
       "create_workspace",
       "create_changelist",
-      "update_changelist",
       "list_workspaces",
       "get_workspace_for_cl",
       "get_current_workspace",
-      "update_reviewer",
       "run_debugging_agent",
       "create_gpaste",
       "update_gpaste",
@@ -72,28 +57,24 @@
       "ShellTool(blaze)",
       "ShellTool(build_cleaner)",
       "ShellTool(g4)",
-      "ShellTool(hg)",
+      "ShellTool(hg)"
     ]
   },
-  "mcpServers": {
-    "g3mcp": {
-      "type": "stdio",
-      "command": "blaze",
-      "args": [
-        "run",
-        "//experimental/users/fushimi/mcp:mcp"
-      ],
-      "timeout": 60000
+  "context": {
+    "fileFiltering": {
+      "enableRecursiveFileSearch": false
     }
   },
-  "theme": "Default",
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "mcpServers": {
+  },
   "ui": {
     "accessibility": {
       "disableLoadingPhrases": true
     }
-  },
-  "accessibility": {
-    "disableLoadingPhrases": true
-  },
-  "selectedAuthType": "gemini-api-key"
+  }
 }
