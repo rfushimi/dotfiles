@@ -8,6 +8,10 @@ setopt HIST_SAVE_NO_DUPS
 
 # コマンド実行後すぐに履歴ファイルへ追記
 setopt inc_append_history
+setopt extended_history
+setopt hist_reduce_blanks
+setopt hist_ignore_space
+setopt numeric_glob_sort
 
 export SD_EDITOR="code --wait"
 export UV_PYTHON=3.11
