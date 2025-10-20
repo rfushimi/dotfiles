@@ -24,12 +24,39 @@ fi
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-# export PATH="$HOME/.uv/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
 export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
 
 # CUDA (WSL2)
 # https://zenn.dev/yumefuku/articles/wsl2-llm-install
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+# nvm
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# LM Studio CLI
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
+# Jetski
+[ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
+
+# Google Cloud SDK (Homebrew Cask)
+if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk" ]; then
+    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+fi
