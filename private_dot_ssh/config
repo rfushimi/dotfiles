@@ -1,6 +1,9 @@
 Include ~/corp-dotfiles/ssh/config
 
 Host *
+    IdentityFile ~/.ssh/akey
+    IdentitiesOnly no 
+    AddKeysToAgent yes
     ServerAliveInterval 60
     ServerAliveCountMax 500
     ControlMaster auto
@@ -39,6 +42,10 @@ Host wsl
 Host mac-studio
     User ryohei
     HostName 100.97.195.68
+    IdentityFile ~/.ssh/akey
+
+Host truenas
+    HostName 100.87.39.43
     IdentityFile ~/.ssh/akey
 
 Host github.com
