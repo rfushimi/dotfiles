@@ -68,9 +68,6 @@ zi for \
   @jqlang/jq
 
 . "$HOME/.local/bin/env"
-<<<<<<< HEAD
-=======
-. "$HOME/.local/share/../bin/env"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -126,4 +123,3 @@ npx() {
 }
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
->>>>>>> 7e1e711a88 (dotfiles sync)
