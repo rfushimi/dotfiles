@@ -13,10 +13,6 @@ Host *
 Host source.developers.google.com
     IdentityFile ~/.ssh/id_ed25519
 
-Host = main edit
-    Hostname fushimi.c.googlers.com
-    RemoteCommand shpool attach -f %k
-  
 Host proxmox
     User root
     HostName 100.82.129.76
@@ -41,8 +37,11 @@ Host wsl
 
 Host mac-studio
     User ryohei
-    HostName 100.97.195.68
+    HostName 192.168.0.230
+    # HostName 100.97.195.68
     IdentityFile ~/.ssh/akey
+    RequestTTY yes
+    RemoteCommand /opt/homebrew/bin/tmux -CC new -A -s main
 
 Host truenas
     HostName 100.87.39.43

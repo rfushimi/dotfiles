@@ -61,7 +61,6 @@ brew hdf5
 brew highway
 brew hunspell
 brew hyperfine
-brew icu4c@76
 brew icu4c@77
 brew imagemagick
 brew imath
@@ -188,10 +187,13 @@ brew task@2
 brew tesseract
 brew texi2html
 brew theora
+brew tmux
 brew transmission-cli
 brew tree
 brew unbound
 brew utf8cpp
+brew utf8proc
+brew uv
 brew vim
 brew vit
 brew vtk
@@ -249,24 +251,25 @@ brew brew-file
 tap rfushimi/tools
 
 # App Store applications
-appstore 302584613 Amazon Kindle (7.40.1)
-appstore 1352778147 Bitwarden (2025.8.2)
-appstore 1500855883 CapCut (6.9.0)
-appstore 1024640650 CotEditor (5.2.3)
+appstore 302584613 Amazon Kindle (7.43)
+appstore 1168254295 AmorphousDiskMark (4.0.1)
+appstore 1352778147 Bitwarden (2025.10.0)
+appstore 1500855883 CapCut (7.2.0)
+appstore 1024640650 CotEditor (6.0.4)
 appstore 640199958 Developer (10.8.3)
-appstore 1380563956 Dictionaries (1.2.67)
-appstore 975937182 Fantastical (4.0.18)
-appstore 1358823008 Flighty (4.5.2)
+appstore 1380563956 Dictionaries (1.3.14)
+appstore 975937182 Fantastical (4.1.2)
+appstore 1358823008 Flighty (4.6.2)
 appstore 682658836 GarageBand (10.4.12)
 appstore 1111570163 GrandPerspective (3.5.3)
 appstore 975890633 HotKey (1.5)
 appstore 408981434 iMovie (10.4.3)
 appstore 409183694 Keynote (14.4)
-appstore 539883307 LINE (9.11.0)
+appstore 539883307 LINE (9.12.1)
 appstore 409203825 Numbers (14.4)
 appstore 409201541 Pages (14.4)
-appstore 545519333 Prime Video (10.95)
-appstore 1475387142 Tailscale (1.86.4)
+appstore 545519333 Prime Video (10.102)
+appstore 1475387142 Tailscale (1.88.4)
 appstore 425424353 The Unarchiver (4.3.9)
-appstore 904280696 Things3 (3.21.15)
-appstore 497799835 Xcode (16.4)
+appstore 904280696 Things3 (3.22.6)
+appstore 497799835 Xcode (26.0.1)
