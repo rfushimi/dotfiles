@@ -22,6 +22,7 @@
       "get_comments",
       "get_critique_comments",
       "get_analysis",
+      "get_critique_comments",
       "search_changelists",
       "search_for_files_codesearch",
       "buganizer_get_bugs",
