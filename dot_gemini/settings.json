@@ -19,10 +19,8 @@
       "restart_xmanager_work_units",
       "get_xmanager_error_logs",
       "internal_search",
-      "get_comments",
       "get_critique_comments",
-      "get_analysis",
-      "get_critique_comments",
+      "get_critique_analysis",
       "search_changelists",
       "search_for_files_codesearch",
       "buganizer_get_bugs",
@@ -58,7 +56,12 @@
       "ShellTool(blaze)",
       "ShellTool(build_cleaner)",
       "ShellTool(g4)",
-      "ShellTool(hg)"
+      "ShellTool(hg)",
+      "ShellTool(jj)",
+      "read_file",
+      "read_many_files",
+      "write_file",
+      "resolve_google3_path"
     ]
   },
   "context": {
