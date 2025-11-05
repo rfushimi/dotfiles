@@ -50,10 +50,19 @@ fpath=(~/.zsh/completions $fpath)
 # Load completion system immediately (not deferred)
 zinit snippet PZTM::completion
 zinit snippet PZTM::directory
+zinit snippet PZTM::git
 
 # Additional completion definitions
 zinit ice lucid
 zinit light zsh-users/zsh-completions
+
+# fzf-tab - MUST load after compinit and before other plugins
+zinit light Aloxaf/fzf-tab
+
+# Configure fzf-tab
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # ============================================================================
 # User Configuration Files
@@ -62,15 +71,63 @@ zinit light zsh-users/zsh-completions
 source ~/.zsh/imports.sh
 
 # ============================================================================
+# Enhanced Navigation and History
+# ============================================================================
+# zoxide - smarter cd (must run after user configs)
+zinit ice wait lucid from"gh-r" as"program" \
+  mv"zoxide*/zoxide -> zoxide" \
+  atclone"./zoxide init zsh > init.zsh" \
+  atpull"%atclone" src"init.zsh" nocompile'!'
+zinit light ajeetdsouza/zoxide
+
+# History substring search
+zinit ice wait lucid \
+  atload'
+    bindkey "^[[A" history-substring-search-up
+    bindkey "^[[B" history-substring-search-down
+  '
+zinit light zsh-users/zsh-history-substring-search
+
+# direnv - per-directory environment variables
+zinit ice wait lucid as"program" from"gh-r" \
+  mv"direnv* -> direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' src"zhook.zsh"
+zinit light direnv/direnv
+
+# ============================================================================
 # Deferred Plugins (for faster startup)
 # ============================================================================
-# Syntax highlighting - load after user configs
-zinit ice wait'1' lucid
-zinit light zsh-users/zsh-syntax-highlighting
+# Fast syntax highlighting - better performance than zsh-syntax-highlighting
+zinit ice wait'1' lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Auto suggestions - load after user configs
 zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+
+# Autopair - auto close brackets and quotes
+zinit ice wait'1' lucid
+zinit light hlissner/zsh-autopair
+
+# you-should-use - reminds you to use aliases
+zinit ice wait'1' lucid
+zinit light MichaelAquilina/zsh-you-should-use
+
+# Better npm completion
+zinit ice wait'1' lucid
+zinit light lukechilds/zsh-better-npm-completion
+
+# ============================================================================
+# Utility Plugins (OMZ)
+# ============================================================================
+# extract - universal archive extractor
+zinit ice wait'1' lucid
+zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+
+# colored-man-pages - colorful man pages
+zinit ice wait'1' lucid
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 # ============================================================================
 # Theme (Powerlevel10k)
