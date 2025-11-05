@@ -1,10 +1,12 @@
+# ============================================================================
+# Environment Variables (before P10k instant prompt)
+# ============================================================================
 export LC_CTYPE=ja_JP.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
-# sd completion
-# https://ianthehenry.com/posts/sd-my-script-directory/
-fpath=(~/.zsh/completions $fpath)
-
+# ============================================================================
+# Powerlevel10k Instant Prompt
+# ============================================================================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -12,6 +14,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# ============================================================================
+# Zinit Plugin Manager
+# ============================================================================
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -35,61 +40,68 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# zinit plugins with turbo mode for faster startup
-zinit ice wait'0' lucid
-zinit light zsh-users/zsh-syntax-highlighting
+# ============================================================================
+# Completion System Setup (load immediately, before user configs)
+# ============================================================================
+# Add custom completion paths (sd, etc.)
+# https://ianthehenry.com/posts/sd-my-script-directory/
+fpath=(~/.zsh/completions $fpath)
 
-zinit ice wait'0' lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
+# Load completion system immediately (not deferred)
+zinit snippet PZTM::completion
+zinit snippet PZTM::directory
 
+# Additional completion definitions
 zinit ice lucid
 zinit light zsh-users/zsh-completions
 
-zinit snippet PZTM::completion
+# ============================================================================
+# User Configuration Files
+# ============================================================================
+# Load all user configurations (settings, aliases, paths, etc.)
+source ~/.zsh/imports.sh
 
-zinit ice wait'0' lucid
-zinit snippet PZTM::directory
+# ============================================================================
+# Deferred Plugins (for faster startup)
+# ============================================================================
+# Syntax highlighting - load after user configs
+zinit ice wait'1' lucid
+zinit light zsh-users/zsh-syntax-highlighting
 
-# Prompt
+# Auto suggestions - load after user configs
+zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+# ============================================================================
+# Theme (Powerlevel10k)
+# ============================================================================
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 POWERLEVEL9K_VCS_MAX_SYNC_LATENCY=0
 POWERLEVEL9K_VCS_ASYNC=1
 
-# Load all configurations
-source ~/.zsh/imports.sh
-
-zi for \
-    from'gh-r' \
-    sbin'* -> jq' \
-    nocompile \
-  @jqlang/jq
-
+# ============================================================================
+# Tool Integrations
+# ============================================================================
+# uv (Python package manager)
 . "$HOME/.local/bin/env"
 
-# pnpm
+# pnpm (Node package manager)
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/fushimi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/fushimi/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/fushimi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/fushimi/google-cloud-sdk/completion.zsh.inc'; fi
-
-# bun completions
-[ -s "/Users/ryohei/.bun/_bun" ] && source "/Users/ryohei/.bun/_bun"
-
-# bun
+# bun (JavaScript runtime)
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
-# NVM lazy loading for faster shell startup
+# ============================================================================
+# NVM (Node Version Manager) - Lazy Loading
+# ============================================================================
 export NVM_DIR="$HOME/.config/nvm"
 
 # Lazy load nvm - only initialize when nvm, node, or npm is first called
@@ -120,5 +132,8 @@ npx() {
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
     npx "$@"
 }
-# Added by LM Studio CLI (lms)
+
+# ============================================================================
+# LM Studio CLI
+# ============================================================================
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
