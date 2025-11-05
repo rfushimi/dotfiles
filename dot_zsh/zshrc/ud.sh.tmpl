@@ -1,4 +1,5 @@
 function update-dotfiles() {
+    pushd
     echo "syncing main dotfiles..."
     cd ~/.local/share/chezmoi
     git add .
@@ -22,4 +23,5 @@ function update-dotfiles() {
     git push -u origin main
     echo "done"
 {{ end }}
+    popd
 }

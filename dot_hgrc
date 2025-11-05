@@ -56,11 +56,6 @@ tags.markdown = white
 f = fix -w
 fiximport = !$HG status --rev p4head --no-status --modified --added -0 | xargs -0 -- Tools/format_imports.py -w
 
-konmari = !$HG prune $1 && $HG cls-setnumber --remove -r $1
-top= !$HG rebase -r $1 -d p4head
-remove = !$HG cls-setnumber --remove -r $1
-fp = !hg patch $1 && hg cls-setnumber $1 && hg commit --amend -m "$(hg log -v -l 1 -r . | sed '1,/^description:$/d' | tail -n +4)"
-
 [merge-tools]
 # merge.preferancestor=*
 filemerge.args=-left $other -right $local -ancestor $base -merge $output
