@@ -50,7 +50,6 @@ fpath=(~/.zsh/completions $fpath)
 # Load completion system immediately (not deferred)
 zinit snippet PZTM::completion
 zinit snippet PZTM::directory
-zinit snippet PZTM::git
 
 # Additional completion definitions
 zinit ice lucid
