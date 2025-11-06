@@ -62,7 +62,6 @@ Host router
 Host main-tmux
     HostName fushimi.c.googlers.com
     RequestTTY yes
-<<<<<<< HEAD
     # Check gcert status, refresh if less than 8h remaining
     RemoteCommand /bin/bash -c "tmx2 -CC new -A -s main"
 
@@ -75,7 +74,3 @@ Host fushimi.c.googlers.com
 	ControlPersist yes
 	ServerAliveInterval 30
 	ServerAliveCountMax 5
-=======
-    # Check gcert status, refresh if less than 1h remaining
-    RemoteCommand /bin/bash -c "gcertstatus -nocheck_ssh -check_remaining=1h || gcert; tmx2 -CC new -A -s main"
->>>>>>> 350c2155c4 (dotfiles sync)
