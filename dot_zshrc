@@ -193,3 +193,5 @@ npx() {
 # LM Studio CLI
 # ============================================================================
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
+
+. "$HOME/.local/share/../bin/env"
