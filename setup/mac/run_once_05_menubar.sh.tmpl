@@ -1,0 +1,7 @@
+
+#!/bin/bash
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    defaults -currentHost write -globalDomain NSStatusItemSpacing -int 10
+    defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 4
+fi
