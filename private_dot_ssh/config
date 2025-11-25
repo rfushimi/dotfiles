@@ -37,8 +37,8 @@ Host wsl
 
 Host mac-studio
     User ryohei
-    HostName 192.168.0.230
-    # HostName 100.97.195.68
+    #HostName 192.168.0.230
+    HostName 100.97.195.68
     IdentityFile ~/.ssh/akey
     RequestTTY yes
     RemoteCommand /opt/homebrew/bin/tmux -CC new -A -s main
