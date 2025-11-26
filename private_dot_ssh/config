@@ -47,8 +47,8 @@ Host truenas
     HostName 100.87.39.43
     IdentityFile ~/.ssh/akey
 
-# Host github.com
-#     IdentityFile ~/.ssh/akey
+Host github.com
+    IdentityFile ~/.ssh/id_ed25519
 
 Host router
     HostName 100.78.36.73
