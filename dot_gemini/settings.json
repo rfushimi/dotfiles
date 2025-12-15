@@ -76,7 +76,6 @@
   },
   "mcpServers": {
     "g3mcp": {
-      "type": "stdio",
       "command": "/google/data/rw/users/fu/fushimi/bin/mcp",
       "timeout": 3600000
     }
@@ -85,5 +84,8 @@
     "accessibility": {
       "disableLoadingPhrases": true
     }
+  },
+  "general": {
+    "previewFeatures": false
   }
 }
