@@ -29,7 +29,17 @@ setopt GLOB_DOTS                  # Glob matches dotfiles
 # Error correction
 setopt CORRECT                    # Correct command spelling mistakes
 
-export SD_EDITOR="code --wait"
+case "$(uname)" in
+  Linux)
+    export SD_EDITOR="vi"
+    ;;
+  Darwin)
+    export SD_EDITOR="code --wait"
+    ;;
+  *)
+    # それ以外のOS（BSDなど）
+    ;;
+esac
 export UV_PYTHON=3.11
 
 setopt auto_cd
