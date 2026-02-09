@@ -37,6 +37,7 @@ case "$(uname)" in
     export SD_EDITOR="code --wait"
     ;;
   *)
+  
     # それ以外のOS（BSDなど）
     ;;
 esac
