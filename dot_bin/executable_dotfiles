@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Edit dotfiles configuration using natural language via LLM CLI
+
+set -euo pipefail
+
+CHEZMOI_DIR="${HOME}/.local/share/chezmoi"
+
+usage() {
+    cat <<'EOF'
+Usage: dotfiles <instruction>
+
+Edit dotfiles using natural language. Requires claude or gemini CLI.
+
+Examples:
+  dotfiles . "$HOME/.cargo/env"
+  dotfiles Add alias g=git
+  dotfiles Add fzf-based git branch selector
+  dotfiles Remove the bun PATH configuration
+EOF
+    exit 1
+}
+
+if [[ $# -eq 0 ]]; then
+    usage
+fi
+
+instruction="$*"
+
+# Read LLM.md for context
+context=""
+if [[ -f "${CHEZMOI_DIR}/LLM.md" ]]; then
+    context=$(<"${CHEZMOI_DIR}/LLM.md")
+fi
+
+system_prompt="You are editing a chezmoi-managed dotfiles repository.
+Interpret the user's natural language instruction and make the appropriate file edits.
+After editing, briefly summarize what you changed and remind to run 'chezmoi apply' if needed.
+
+${context}"
+
+cd "$CHEZMOI_DIR"
+
+# Prefer claude, fall back to gemini
+if command -v claude &>/dev/null; then
+    exec claude -p \
+        --allowedTools "Read,Edit,Write,Glob,Grep" \
+        --append-system-prompt "$system_prompt" \
+        "$instruction"
+elif command -v gemini &>/dev/null; then
+    exec gemini -p "$system_prompt
+
+---
+User instruction: $instruction"
+else
+    echo "Error: Neither 'claude' nor 'gemini' CLI is installed." >&2
+    exit 1
+fi
