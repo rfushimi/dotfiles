@@ -47,7 +47,9 @@ if [ -s "$BUN_INSTALL/_bun" ] && (( $+functions[compdef] )); then
     source "$BUN_INSTALL/_bun"
 fi
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 # nvm
 export NVM_DIR="$HOME/.config/nvm"
