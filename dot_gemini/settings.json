@@ -82,10 +82,11 @@
   },
   "ui": {
     "accessibility": {
-      "disableLoadingPhrases": true
+      "disableLoadingPhrases": true,
+      "enableLoadingPhrases": false
     }
   },
   "general": {
-    "previewFeatures": false
+    "previewFeatures": true
   }
 }
