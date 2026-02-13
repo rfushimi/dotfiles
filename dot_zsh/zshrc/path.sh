@@ -65,3 +65,8 @@ if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk" ]; then
     source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
     source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
+
+# Added by Antigravity
+export PATH="/Users/ryohei/.antigravity/antigravity/bin:$PATH"
+# Added by Jetski
+export PATH="/Users/fushimi/.jetski/jetski/bin:$PATH"
