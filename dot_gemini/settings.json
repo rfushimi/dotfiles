@@ -62,7 +62,8 @@
       "read_many_files",
       "write_file",
       "resolve_google3_path"
-    ]
+    ],
+    "autoAccept": true
   },
   "context": {
     "fileFiltering": {
@@ -71,7 +72,7 @@
   },
   "security": {
     "auth": {
-      "selectedType": "gemini-api-key"
+      "selectedType": "oauth-personal"
     }
   },
   "mcpServers": {
@@ -84,9 +85,14 @@
     "accessibility": {
       "disableLoadingPhrases": true,
       "enableLoadingPhrases": false
-    }
+    },
+    "showLineNumbers": true
   },
   "general": {
-    "previewFeatures": true
+    "previewFeatures": true,
+    "enablePromptCompletion": true
+  },
+  "experimental": {
+    "useOSC52Paste": true
   }
 }
