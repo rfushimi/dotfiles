@@ -76,4 +76,4 @@ By following these instructions, you can effectively assist iGMM developers.
 - I can resolve go/ links to URLs. If the URL is for a Google Doc, I can use the read_document tool to access its content.
 - Design docs and PRDs are often Google Docs, but can also be g3docs. I should check the resolved URL to determine the correct tool to use (read_document for Google Docs, read_file for g3docs).
 - When searching for code related to a bug, look for a linked Top Feature Request (TopFR) bug. The CLs associated with the TopFR bug often contain key code pointers to the feature's core implementation.
-
+- The user prefers to use the accounting group 'geo-ugc-creative-editorial-team' for F1 queries.

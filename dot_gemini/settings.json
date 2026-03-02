@@ -86,11 +86,17 @@
       "disableLoadingPhrases": true,
       "enableLoadingPhrases": false
     },
-    "showLineNumbers": true
+    "showLineNumbers": true,
+    "loadingPhrases": "off"
   },
   "general": {
     "previewFeatures": true,
-    "enablePromptCompletion": true
+    "enablePromptCompletion": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "120d"
+    }
   },
   "experimental": {
     "useOSC52Paste": true
