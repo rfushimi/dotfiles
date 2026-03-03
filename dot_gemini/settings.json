@@ -86,12 +86,10 @@
       "disableLoadingPhrases": true,
       "enableLoadingPhrases": false
     },
-    "showLineNumbers": true,
     "loadingPhrases": "off"
   },
   "general": {
     "previewFeatures": true,
-    "enablePromptCompletion": true,
     "sessionRetention": {
       "warningAcknowledged": true,
       "enabled": true,
