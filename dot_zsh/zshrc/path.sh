@@ -42,6 +42,7 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
 # Load bun completions only if compinit is available
 if [ -s "$BUN_INSTALL/_bun" ] && (( $+functions[compdef] )); then
     source "$BUN_INSTALL/_bun"

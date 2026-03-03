@@ -105,10 +105,6 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
-# bun completions - load after compinit
-zinit ice wait'1' lucid as'completion'
-zinit snippet "$HOME/.bun/_bun"
-
 # Autopair - auto close brackets and quotes
 zinit ice wait'1' lucid
 zinit light hlissner/zsh-autopair
