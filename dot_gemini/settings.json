@@ -83,7 +83,6 @@
   },
   "ui": {
     "accessibility": {
-      "disableLoadingPhrases": true,
       "enableLoadingPhrases": false
     },
     "loadingPhrases": "off"
@@ -94,7 +93,8 @@
       "warningAcknowledged": true,
       "enabled": true,
       "maxAge": "120d"
-    }
+    },
+    "preferredEditor": "vim"
   },
   "experimental": {
     "useOSC52Paste": true
