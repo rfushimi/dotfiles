@@ -1,0 +1,248 @@
+# ============================================================================
+# Environment Variables
+# ============================================================================
+export LC_CTYPE=ja_JP.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+: "${XDG_CACHE_HOME:=$HOME/.cache}"
+: "${XDG_DATA_HOME:=$HOME/.local/share}"
+: "${XDG_STATE_HOME:=$HOME/.local/state}"
+export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# ============================================================================
+# Shell Options
+# ============================================================================
+shopt -s histappend       # Append to history file, don't overwrite
+shopt -s autocd           # cd by typing directory name
+shopt -s cdspell          # Correct minor cd spelling errors
+shopt -s dirspell         # Correct minor directory spelling errors
+shopt -s globstar         # ** matches recursively
+shopt -s dotglob          # Glob matches dotfiles
+shopt -s checkwinsize     # Update LINES and COLUMNS after each command
+shopt -s no_empty_cmd_completion  # Don't complete on empty line
+
+# ============================================================================
+# History Settings
+# ============================================================================
+export HISTFILE=~/.bash_history
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTTIMEFORMAT="%F %T "
+PROMPT_COMMAND="history -a;${PROMPT_COMMAND:-}"
+
+# ============================================================================
+# PATH Configuration
+# ============================================================================
+# Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Homebrew brew-file
+if [ -d /opt/homebrew ]; then
+    if [ -f "$(brew --prefix)/etc/brew-wrap" ]; then
+        source "$(brew --prefix)/etc/brew-wrap"
+    fi
+fi
+
+# User paths
+export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
+
+# CUDA (WSL2)
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH:-}"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Cargo
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
+# nvm
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# LM Studio CLI
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
+# Jetski
+[ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
+
+# uv (Python package manager)
+. "$HOME/.local/bin/env"
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# ============================================================================
+# OS-Specific Settings
+# ============================================================================
+{{ if eq .chezmoi.os "darwin" -}}
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Use GNU commands instead of BSD commands
+if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
+alias finder='open -a Finder ./'
+
+# Google Cloud SDK (Homebrew Cask)
+if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk" ]; then
+    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+alias open='xdg-open'
+{{ else if eq .chezmoi.os "windows" -}}
+export MSYS=winsymlinks:nativestrict
+alias start='cmd.exe /c start'
+{{ end -}}
+
+# ============================================================================
+# Architecture-Specific Settings
+# ============================================================================
+{{ if eq .chezmoi.arch "arm64" -}}
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_AUTO_UPDATE_SECS=864000
+{{ end -}}
+
+# ============================================================================
+# Editor and Tool Settings
+# ============================================================================
+case "$(uname)" in
+  Linux)  export SD_EDITOR="vi" ;;
+  Darwin) export SD_EDITOR="code --wait" ;;
+esac
+export UV_PYTHON=3.11
+
+# ============================================================================
+# Aliases
+# ============================================================================
+alias du="du -h"
+alias df="df -h"
+alias ssh-keygen="ssh-keygen -t ed25519 -a 128"
+alias reload="source ~/.bashrc"
+alias w="npx wrangler"
+alias ls='ls --color=auto'
+alias ll='ls -lAh --time-style=long-iso --color=auto'
+alias ud="update-dotfiles; chezmoi apply; source ~/.bashrc"
+alias code-chezmoi="code ~/.local/share/chezmoi/"
+alias code-sd="code ~/src/scripts"
+alias sz="source ~/.bashrc"
+alias zs="source ~/.bashrc"
+alias activate="source .venv/bin/activate"
+alias a="source .venv/bin/activate"
+
+# ============================================================================
+# Functions
+# ============================================================================
+
+# update-dotfiles - sync dotfiles repos
+function update-dotfiles() {
+    pushd . > /dev/null
+    echo "syncing main dotfiles..."
+    cd ~/.local/share/chezmoi
+    git add .
+    git commit -m "dotfiles sync"
+    git pull --rebase origin main
+    git push -u origin main
+    echo "done"
+    cd ~/sd
+    git add .
+    git commit -m "dotfiles sync"
+    git pull --rebase origin main
+    git push -u origin main
+    echo "done"
+{{ if eq .chezmoi.username "fushimi" }}
+    echo "syncing corp dotfiles..."
+    cd "$HOME/corp-dotfiles"
+    git add .
+    git commit -m "dotfiles sync"
+    git pull origin main
+    git push -u origin main
+    echo "done"
+{{ end }}
+    popd > /dev/null
+}
+
+# c - browse Chrome history with fzf
+c() {
+    local cols sep google_history open
+    cols=$((COLUMNS / 3))
+    sep='{::}'
+
+    if [ "$(uname)" = "Darwin" ]; then
+        google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
+        open=open
+    else
+        google_history="$HOME/.config/google-chrome/Default/History"
+        open=xdg-open
+    fi
+    cp -f "$google_history" /tmp/h
+    sqlite3 -separator $sep /tmp/h \
+        "select substr(title, 1, $cols), url
+         from urls order by last_visit_time desc" |
+        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+        fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open >/dev/null 2>/dev/null
+}
+
+# man-find - browse man pages with fzf
+man-find() {
+    f=$(fd . $MANPATH/man${1:-1} -t f -x echo {/.} | fzf) && man $f
+}
+
+# ============================================================================
+# Bash Completion
+# ============================================================================
+if [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+    source /opt/homebrew/etc/profile.d/bash_completion.sh
+elif [ -r /usr/share/bash-completion/bash_completion ]; then
+    source /usr/share/bash-completion/bash_completion
+elif [ -r /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
+
+# ============================================================================
+# Tool Integrations (must be after PATH setup)
+# ============================================================================
+
+# Starship prompt
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+eval "$(starship init bash)"
+
+# fzf key bindings and completion
+eval "$(fzf --bash)"
+
+# zoxide (smarter cd)
+eval "$(zoxide init bash)"
+
+# direnv (per-directory environment variables)
+eval "$(direnv hook bash)"
+
+# ============================================================================
+# Corp-Specific Settings
+# ============================================================================
+{{ if eq .chezmoi.username "fushimi" -}}
+source ~/corp-dotfiles/bashrc 2>/dev/null || true
+{{ end -}}

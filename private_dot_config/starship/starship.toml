@@ -1,0 +1,104 @@
+# Starship prompt configuration
+# Replicating P10k classic layout: 2-line prompt with Nerd Font icons
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$status\
+$cmd_duration\
+$jobs\
+$python\
+$nodejs\
+$rust\
+$package\
+$direnv\
+\
+$time
+$character"""
+
+# Use Nerd Font symbols
+[os]
+disabled = false
+
+[os.symbols]
+Macos = " "
+Linux = " "
+Windows = "󰍲 "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+style = "bold blue"
+
+[git_branch]
+symbol = " "
+style = "bold green"
+
+[git_status]
+style = "bold yellow"
+
+[fill]
+symbol = "·"
+style = "dimmed white"
+
+[status]
+disabled = false
+symbol = "✘ "
+success_symbol = ""
+format = '[$symbol$status]($style) '
+
+[cmd_duration]
+min_time = 3_000
+show_milliseconds = false
+format = "[ $duration]($style) "
+
+[jobs]
+symbol = "✦ "
+
+[python]
+symbol = " "
+format = '[$symbol$virtualenv]($style) '
+
+[nodejs]
+symbol = " "
+format = '[$symbol$version]($style) '
+
+[rust]
+symbol = "🦀 "
+format = '[$symbol$version]($style) '
+
+[package]
+symbol = "📦 "
+format = '[$symbol$version]($style) '
+
+[direnv]
+disabled = false
+symbol = " "
+
+[kubernetes]
+disabled = true
+
+[terraform]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[azure]
+disabled = true
+
+[time]
+disabled = false
+format = '[ $time]($style) '
+time_format = "%H:%M"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"

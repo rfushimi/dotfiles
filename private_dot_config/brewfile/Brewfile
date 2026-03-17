@@ -25,6 +25,7 @@ brew coreutils
 brew dav1d
 brew dbus
 brew diffutils
+brew direnv
 brew docker
 brew docker-completion
 brew docker-compose
@@ -175,6 +176,7 @@ brew shtool
 brew snappy
 brew speex
 brew sqlite
+brew starship
 brew srt
 brew svt-av1
 brew swiftlint
