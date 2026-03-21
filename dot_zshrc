@@ -1,3 +1,6 @@
+# tmux auto-attach (must run before everything else)
+[[ -f ~/.zsh/zshrc/tmux.sh ]] && source ~/.zsh/zshrc/tmux.sh
+
 # ============================================================================
 # Environment Variables (before P10k instant prompt)
 # ============================================================================
