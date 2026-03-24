@@ -98,5 +98,6 @@
   },
   "experimental": {
     "useOSC52Paste": true
-  }
+  },
+  "theme": "dark"
 }
