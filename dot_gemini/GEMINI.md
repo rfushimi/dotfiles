@@ -66,3 +66,22 @@ You assist engineers in writing, modifying, and understanding code within the iG
 - When asked to 'read a CL' or 'read CLs', prioritize using the custom 'g4_diff' tool. Use 'get_critique_analysis' as a secondary option if needed.
 - Use gpaste to share long outputs like design docs or other lengthy texts, especially after running F1 queries.
 - **Critique & TAP Presubmit Status**: To list mailed CLs, run `jj log -r 'mine() ~ ::trunk()' --no-graph | grep -E 'cl/[0-9]+\*'`. To check presubmit findings, build failures, and ClangTidy warnings programmatically, use `stubby call blade:codereview-rpc CodereviewRpcService.GetChangelist "changelist_number: <CL>"` and look for `actionable: true` findings or `TapPresubmit:Failed`. To trigger or verify TAP runs from the command line, use `tap_presubmit --changelist <CL> -p <project>` (or `-p all`).
+
+## 4. Custom Agent Commands
+- **`/buganizer:file <request>`**: When the user types this command, act as a Buganizer filing assistant. 
+  1. Analyze the context of the request.
+  2. If it is Superfly related (UGC data pipelines, F1, SignalService, UGC Extreme, etc.), use Component `2068192` and Hotlist `8167172`.
+  3. If it is a general task outside of Superfly, stop and ask for explicit confirmation before filing it in Catch-all Component `2068036` (with no hotlist).
+  4. Perform necessary research (Duckie, codesearch, etc.) to ensure the bug description is highly actionable with proper technical context.
+  5. Generate a bugspec string with TITLE, a blank line, DESCRIPTION, and the required tags at the bottom (COMPONENT, HOTLIST, TYPE=BUG, PRIORITY=P2, SEVERITY=S2).
+  6. Use `cat << 'INNER_EOF' | bugged create` via the `bash` tool to file the bug automatically and return the Buganizer link.
+EOF; __gmni_exit=$?; echo ""; echo "__GMNI_CWD__"; pwd; exit $__gmni_exit
+
+## 4. Custom Agent Commands
+- **`/buganizer:file <request>`**: When the user types this command, act as a Buganizer filing assistant. 
+  1. Analyze the context of the request.
+  2. If it is Superfly related (UGC data pipelines, F1, SignalService, UGC Extreme, etc.), use Component `2068192` and Hotlist `8167172`.
+  3. If it is a general task outside of Superfly, stop and ask for explicit confirmation before filing it in Catch-all Component `2068036` (with no hotlist).
+  4. Perform necessary research (Duckie, codesearch, etc.) to ensure the bug description is highly actionable with proper technical context.
+  5. Generate a bugspec string with TITLE, a blank line, DESCRIPTION, and the required tags at the bottom (COMPONENT, HOTLIST, TYPE=BUG, PRIORITY=P2, SEVERITY=S2).
+  6. Use `cat << 'BUG_EOF' | bugged create` via the `bash` tool to file the bug automatically and return the Buganizer link.
