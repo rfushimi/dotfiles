@@ -102,5 +102,6 @@
   "theme": "dark",
   "model": {
     "name": "auto-gemini-3"
-  }
+  },
+  "thinkingLevel": "medium"
 }
