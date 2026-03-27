@@ -18,3 +18,5 @@ alias sz="source ~/.zshrc"
 alias zs="source ~/.zshrc"
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
+
+alias tm="tmux -CC new -A -s main"
