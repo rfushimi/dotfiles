@@ -26,7 +26,7 @@ function update-dotfiles() {
     echo "done"
 {{ end }}
     mkdir -p "$(dirname "$_UD_STAMP")"
-    date +%s > "$_UD_STAMP"
+    date +%s >| "$_UD_STAMP"
     popd
 }
 
