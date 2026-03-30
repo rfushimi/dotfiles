@@ -78,7 +78,7 @@
   "mcpServers": {
     "g3mcp": {
       "command": "/google/data/rw/users/fu/fushimi/bin/mcp",
-      "timeout": 3600000
+      "timeout": 10000
     }
   },
   "ui": {
@@ -101,7 +101,7 @@
   },
   "theme": "dark",
   "model": {
-    "name": "auto-gemini-3"
+    "name": "gemini-3.1-pro-preview"
   },
   "thinkingLevel": "medium"
 }
