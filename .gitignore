@@ -1,2 +1,21 @@
 .DS_Store
 corp-dotfiles
+
+# Build artifacts & dependencies (global)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+dot_venv/
+
+# ~/.claude - only sync config and skill source files
+private_dot_claude/*
+!private_dot_claude/settings.json
+!private_dot_claude/dot_claude/
+!private_dot_claude/skills/
+
+# Skill build artifacts
+private_dot_claude/skills/*/dot_venv/
+private_dot_claude/skills/*/dot_git/
+private_dot_claude/skills/**/node_modules/
+private_dot_claude/skills/**/__pycache__/
