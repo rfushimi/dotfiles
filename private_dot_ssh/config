@@ -41,7 +41,12 @@ Host mac-studio
     HostName 100.97.195.68
     IdentityFile ~/.ssh/akey
     RequestTTY yes
-#    RemoteCommand /opt/homebrew/bin/tmux -CC attach -t main -d
+    RemoteCommand /opt/homebrew/bin/tmux -CC new -t main
+
+Host mac-studio-no-tmux
+    User ryohei
+    HostName 100.97.195.68
+    IdentityFile ~/.ssh/akey
 
 Host truenas
     HostName 100.87.39.43
