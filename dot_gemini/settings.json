@@ -101,7 +101,7 @@
   },
   "theme": "dark",
   "model": {
-    "name": "gemini-3.1-pro-preview"
+    "name": "auto-gemini-3"
   },
   "thinkingLevel": "medium"
 }
