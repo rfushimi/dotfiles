@@ -159,3 +159,6 @@ export PATH="/Users/ryohei/.antigravity/antigravity/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ryohei/.lmstudio/bin"
+
+# Added by Jetski
+export PATH="/Users/fushimi/.jetski/jetski/bin:$PATH"
