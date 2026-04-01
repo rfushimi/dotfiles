@@ -1,7 +1,2 @@
-
-{{ if eq .chezmoi.username "fushimi" }}
-# import from corp-dotfiles on corp machines
-source ~/corp-dotfiles/zshrc
-{{ else }}
-:
-{{ end }}
+# Corp-specific Zsh settings (if any beyond the common env)
+# The common env sources ~/corp-dotfiles/zshrc automatically.
