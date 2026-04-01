@@ -214,6 +214,7 @@ tap homebrew/cask
 cask adobe-creative-cloud
 cask alacritty
 cask android-platform-tools
+cask azookey
 cask bitwarden
 cask coteditor
 cask discord
@@ -255,14 +256,14 @@ cask kindle
 appstore 302584613 Amazon Kindle (7.54)
 appstore 1168254295 AmorphousDiskMark (4.0.1)
 appstore 1352778147 Bitwarden (2026.2.1)
-appstore 1500855883 CapCut (8.2.0)
-appstore 1024640650 CotEditor (6.2.5)
+appstore 1500855883 CapCut (8.3.0)
+appstore 1024640650 CotEditor (6.2.6)
 appstore 640199958 Developer (10.8.3)
-appstore 1380563956 Dictionaries (1.3.16)
+appstore 1380563956 Dictionaries (1.4)
 appstore 975937182 Fantastical (4.1.10)
 appstore 1358823008 Flighty (4.7.3)
 appstore 682658836 GarageBand (10.4.13)
-appstore 1111570163 GrandPerspective (3.6.1)
+appstore 1111570163 GrandPerspective (3.6.4)
 appstore 975890633 HotKey (1.5)
 appstore 408981434 iMovie (10.4.4)
 appstore 409183694 Keynote (14.5)
@@ -272,6 +273,6 @@ appstore 409201541 Pages (14.5)
 appstore 545519333 Prime Video (10.120.1)
 appstore 1475387142 Tailscale (1.94.1)
 appstore 425424353 The Unarchiver (4.3.9)
-appstore 904280696 Things3 (3.22.10)
+appstore 904280696 Things3 (3.22.11)
 appstore 1295203466 Windows App (11.3.2)
 appstore 497799835 Xcode (26.3)
