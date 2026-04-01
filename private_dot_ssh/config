@@ -4,6 +4,7 @@ Host main
     HostName main
 
 Host *
+    TCPKeepAlive no
     ServerAliveInterval 60
     ServerAliveCountMax 500
     ControlMaster auto
