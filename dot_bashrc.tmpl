@@ -139,20 +139,13 @@ export UV_PYTHON=3.11
 # ============================================================================
 # Aliases
 # ============================================================================
-alias du="du -h"
-alias df="df -h"
-alias ssh-keygen="ssh-keygen -t ed25519 -a 128"
 alias reload="source ~/.bashrc"
-alias w="npx wrangler"
-alias ls='ls --color=auto'
-alias ll='ls -lAh --time-style=long-iso --color=auto'
 alias ud="update-dotfiles; chezmoi apply; source ~/.bashrc"
-alias code-chezmoi="code ~/.local/share/chezmoi/"
-alias code-sd="code ~/src/scripts"
 alias sz="source ~/.bashrc"
 alias zs="source ~/.bashrc"
-alias activate="source .venv/bin/activate"
-alias a="source .venv/bin/activate"
+
+# Source common aliases
+source ~/.common_alias.sh
 
 # ============================================================================
 # Functions
