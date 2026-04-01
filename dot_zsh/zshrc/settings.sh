@@ -1,4 +1,4 @@
-# History settings
+# Zsh history settings
 setopt share_history
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
@@ -10,13 +10,6 @@ setopt HIST_IGNORE_SPACE          # Don't save commands starting with space
 setopt HIST_REDUCE_BLANKS         # Remove extra blanks from history
 setopt EXTENDED_HISTORY           # Save timestamp and duration
 
-# コマンド実行後すぐに履歴ファイルへ追記
-setopt inc_append_history
-setopt extended_history
-setopt hist_reduce_blanks
-setopt hist_ignore_space
-setopt numeric_glob_sort
-
 # Directory stack settings
 setopt AUTO_PUSHD                 # Automatically push directories to stack on cd
 setopt PUSHD_IGNORE_DUPS          # Don't push duplicate directories
@@ -25,23 +18,11 @@ setopt PUSHD_MINUS                # Use cd -<n> to access directory stack
 # Glob settings
 setopt EXTENDED_GLOB              # Enable extended globbing
 setopt GLOB_DOTS                  # Glob matches dotfiles
+setopt numeric_glob_sort
 
 # Error correction
 setopt CORRECT                    # Correct command spelling mistakes
 
-case "$(uname)" in
-  Linux)
-    export SD_EDITOR="vi"
-    ;;
-  Darwin)
-    export SD_EDITOR="code --wait"
-    ;;
-  *)
-  
-    # それ以外のOS（BSDなど）
-    ;;
-esac
-export UV_PYTHON=3.11
-
+# Navigation
 setopt auto_cd
 cdpath=(~ ~/dev)

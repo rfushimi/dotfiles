@@ -72,64 +72,11 @@ alias zs="source ~/.bashrc"
 # ============================================================================
 # Functions
 # ============================================================================
+# Source shared functions
+[ -f "$HOME/.zsh/zshrc/functions.sh" ] && source "$HOME/.zsh/zshrc/functions.sh"
 
 # update-dotfiles - sync dotfiles repos
 function update-dotfiles() {
-    pushd "$HOME" > /dev/null
-    
-    # Define repositories to sync
-    local repos=(
-        "$HOME/.local/share/chezmoi"
-        "$HOME/sd"
-    )
-    {{ if .is_corp -}}
-    repos+=("$HOME/corp-dotfiles")
-    {{ end -}}
-
-    for repo in "${repos[@]}"; do
-        if [ -d "$repo" ]; then
-            echo "Syncing $repo..."
-            cd "$repo"
-            git add .
-            # Only commit if there are changes
-            if ! git diff-index --quiet HEAD --; then
-                git commit -m "dotfiles sync $(date +%Y-%m-%d)"
-            fi
-            git pull --rebase origin main
-            git push -u origin main
-        fi
-    done
-    
-    popd > /dev/null
-}
-
-# c - browse Chrome history with fzf
-c() {
-    local cols sep google_history open
-    cols=$((COLUMNS / 3))
-    sep='{::}'
-
-    if [ "$(uname)" = "Darwin" ]; then
-        google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
-        open=open
-    else
-        google_history="$HOME/.config/google-chrome/Default/History"
-        open=xdg-open
-    fi
-    [ ! -f "$google_history" ] && echo "Chrome history not found" && return 1
-    
-    cp -f "$google_history" /tmp/h
-    sqlite3 -separator $sep /tmp/h \
-        "select substr(title, 1, $cols), url
-         from urls order by last_visit_time desc" |
-        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
-        fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open >/dev/null 2>/dev/null
-}
-
-# man-find - browse man pages with fzf
-man-find() {
-    f=$(fd . $MANPATH/man${1:-1} -t f -x echo {/.} | fzf) && man $f
-}
 
 # ============================================================================
 # Bash Completion
