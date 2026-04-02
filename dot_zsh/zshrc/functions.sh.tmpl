@@ -2,6 +2,43 @@
 # Shared Shell Functions (Bash & Zsh)
 # ============================================================================
 
+# update-dotfiles - sync dotfiles repos
+# Uses a subshell to ensure PWD is never changed in the parent shell
+update-dotfiles() {
+    (
+        local repos=(
+            "$HOME/.local/share/chezmoi"
+            "$HOME/sd"
+        )
+        {{ if .is_corp -}}
+        repos+=("$HOME/corp-dotfiles")
+        {{ end -}}
+
+        for repo in "${repos[@]}"; do
+            if [ -d "$repo" ] && [ -d "$repo/.git" ]; then
+                echo "--- Syncing $repo ---"
+                cd "$repo" || continue
+                
+                # Add changes
+                git add .
+                
+                # Commit if changes exist
+                if ! git diff-index --quiet HEAD --; then
+                    git commit -m "dotfiles sync $(date +%Y-%m-%d)" || true
+                fi
+                
+                # Pull and Push
+                # We use || true to prevent the subshell from exiting early if one repo fails
+                echo "Pulling..."
+                git pull --rebase --no-edit origin main || echo "Warning: Failed to pull $repo"
+                echo "Pushing..."
+                git push -u origin main || echo "Warning: Failed to push $repo"
+                echo ""
+            fi
+        done
+    )
+}
+
 # c - browse Chrome history with fzf
 c() {
     local cols sep google_history open
