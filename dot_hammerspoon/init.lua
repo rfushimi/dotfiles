@@ -22,7 +22,7 @@ hs.hotkey.bind({"cmd"}, "6", function ()
     hs.application.launchOrFocus("Google Calendar")
 end)
 hs.hotkey.bind({"cmd"}, "`", function ()
-    hs.application.launchOrFocus("iTerm")
+    hs.application.launchOrFocus("Ghostty")
 end)
 
 local window_management = require "modules.window_manager"
