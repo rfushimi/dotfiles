@@ -14,4 +14,4 @@ alias code-sd="code ~/src/scripts"
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
 
-alias tm="tmux -CC new -A -s main"
+alias tm="tmux -CC new -A -s iterm -t main"
