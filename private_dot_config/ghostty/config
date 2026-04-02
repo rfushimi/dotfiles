@@ -33,7 +33,7 @@ shell-integration-features = cursor,sudo,title
 copy-on-select = clipboard
 
 # Mouse
-mouse-scroll-multiplier = 3
+mouse-scroll-multiplier = 1
 mouse-hide-while-typing = true
 
 # Working directory
