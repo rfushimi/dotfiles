@@ -1,4 +1,5 @@
 .DS_Store
+dot_DS_Store
 corp-dotfiles
 
 # Build artifacts & dependencies (global)

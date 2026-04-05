@@ -38,11 +38,6 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 alias finder='open -a Finder ./'
 
-# Google Cloud SDK (Homebrew Cask)
-if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk" ]; then
-    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
-    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
-fi
 {{ else if eq .chezmoi.os "linux" -}}
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 alias open='xdg-open'

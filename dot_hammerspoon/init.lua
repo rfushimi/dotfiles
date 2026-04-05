@@ -30,6 +30,6 @@ local window_management = require "modules.window_manager"
 hs.hotkey.bind({"option"}, "Left", window_management.moveWindowLeft)
 hs.hotkey.bind({"option"}, "Right", window_management.moveWindowRight)
 hs.hotkey.bind({"option"}, "Up", window_management.maximizeWindow)
-hs.hotkey.bind({"optionn"}, "Down", window_management.minimizeWindow)
+hs.hotkey.bind({"option"}, "Down", window_management.minimizeWindow)
 hs.hotkey.bind({"option", "shift"}, "Left", window_management.moveWindowNextScreen)
 hs.hotkey.bind({"option", "shift"}, "Right", window_management.moveWindowPrevScreen)

@@ -4,11 +4,6 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# Use GNU commands instead of BSD commands
-if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
-    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-fi
-
 # macOS specific aliases
 alias finder='open -a Finder ./'
 
