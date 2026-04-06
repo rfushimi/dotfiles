@@ -17,3 +17,6 @@ alias gs="git status"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git pull"
+
+# Gemini CLI with dotfiles workspaces
+alias gemini-dot="gemini --include-directories ~/.local/share/chezmoi,~/corp-dotfiles"
