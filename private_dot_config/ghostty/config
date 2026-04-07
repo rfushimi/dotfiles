@@ -8,11 +8,10 @@ adjust-cell-height = 5%
 background = 000000
 foreground = bbbbbb
 background-opacity = 0.92
-background-blur = true
+background-blur = macos-glass-regular
 cursor-color = bbbbbb
 cursor-style = block
 cursor-style-blink = false
-bold-is-bright = false
 
 # Scrollback (tmux handles history)
 scrollback-limit = 0
@@ -28,6 +27,8 @@ confirm-close-surface = false
 # Shell integration
 shell-integration = detect
 shell-integration-features = cursor,sudo,title
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = notify,bell
 
 # Clipboard
 copy-on-select = clipboard
@@ -41,6 +42,13 @@ working-directory = home
 
 # Auto update
 auto-update = download
+
+# Quick Terminal (Cmd + Shift + \)
+keybind = global:cmd+shift+\=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = true
 
 # Claude Code: Shift+Enter for newline
 keybind = shift+enter=text:\n
