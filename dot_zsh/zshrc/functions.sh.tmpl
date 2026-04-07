@@ -30,7 +30,7 @@ update-dotfiles() {
                 # Pull and Push
                 # We use || true to prevent the subshell from exiting early if one repo fails
                 echo "Pulling..."
-                git pull --rebase --no-edit origin main || echo "Warning: Failed to pull $repo"
+                git pull --rebase -X theirs origin main || echo "Warning: Failed to pull $repo"
                 echo "Pushing..."
                 git push -u origin main || echo "Warning: Failed to push $repo"
                 echo ""
