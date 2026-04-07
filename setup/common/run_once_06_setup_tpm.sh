@@ -1,7 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-TPM_DIR="$HOME/.tmux/plugins/tpm"
+# XDG-compatible paths (matches TPM's auto-detection for ~/.config/tmux/tmux.conf)
+PLUGIN_DIR="$HOME/.config/tmux/plugins"
+TPM_DIR="$PLUGIN_DIR/tpm"
+
+mkdir -p "$PLUGIN_DIR"
 
 if [ ! -d "$TPM_DIR" ]; then
   echo "Installing TPM..."
@@ -9,9 +13,9 @@ if [ ! -d "$TPM_DIR" ]; then
 fi
 
 echo "Installing tmux plugins..."
-# Clean up any leftover session, then start a detached tmux with our config
 tmux kill-session -t _tpm_setup 2>/dev/null || true
-tmux -f "$HOME/.config/tmux/tmux.conf" new-session -d -s _tpm_setup
+tmux new-session -d -s _tpm_setup
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$PLUGIN_DIR/"
 "$TPM_DIR/bin/install_plugins"
 tmux kill-session -t _tpm_setup 2>/dev/null || true
 echo "TPM plugins installed."
