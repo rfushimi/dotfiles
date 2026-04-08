@@ -1,0 +1,18 @@
+#!/bin/bash
+# Create a new timestamped draft note and open it in VS Code Draftbox profile
+DRAFT_DIR="$HOME/Draftbox"
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M")
+FILE="$DRAFT_DIR/${TIMESTAMP}.md"
+
+mkdir -p "$DRAFT_DIR"
+
+cat > "$FILE" << EOF
+---
+title: Untitled
+date: $(date +"%Y-%m-%d %H:%M")
+tags: []
+---
+
+EOF
+
+/opt/homebrew/bin/code "$DRAFT_DIR" --profile "Draftbox" --goto "$FILE:8"

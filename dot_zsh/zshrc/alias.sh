@@ -20,3 +20,6 @@ alias gl="git pull"
 
 # Gemini CLI with dotfiles workspaces
 alias gemini-dot="gemini --include-directories ~/.local/share/chezmoi,~/corp-dotfiles"
+
+# Draftbox: quick note-taking in VS Code
+alias draft='code ~/Draftbox --profile "Draftbox"'
