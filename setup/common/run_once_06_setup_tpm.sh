@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+if ! command -v tmux &>/dev/null; then
+  echo "tmux not found, skipping TPM setup"
+  exit 0
+fi
+
 # XDG-compatible paths (matches TPM's auto-detection for ~/.config/tmux/tmux.conf)
 PLUGIN_DIR="$HOME/.config/tmux/plugins"
 TPM_DIR="$PLUGIN_DIR/tpm"
