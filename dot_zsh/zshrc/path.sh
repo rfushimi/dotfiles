@@ -4,6 +4,12 @@
 # This file is shared between Bash and Zsh.
 [ -f "$HOME/.zsh/zshrc/env.sh" ] && source "$HOME/.zsh/zshrc/env.sh"
 
+# GNU coreutils: must be set here (not .zshenv) because macOS path_helper
+# in /etc/zprofile reorders PATH after .zshenv, pushing gnubin behind /usr/bin.
+if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
 # Zsh-specific tool completions/integrations (that need compinit/compdef)
 if (( $+functions[compdef] )); then
     # Bun completions
