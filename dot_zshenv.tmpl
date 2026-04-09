@@ -15,7 +15,13 @@ export PATH="$HOME/.local/bin:$PATH"
 # OS-Specific PATHs
 {{ if eq .chezmoi.os "darwin" -}}
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-# NOTE: GNU coreutils PATH is set in ~/.zsh/zshrc/path.sh (after path_helper runs)
+# Use GNU commands instead of BSD commands
+for _gnupkg in coreutils findutils gawk gnu-sed gnu-tar gnu-time grep; do
+    if [ -d "/opt/homebrew/opt/$_gnupkg/libexec/gnubin" ]; then
+        export PATH="/opt/homebrew/opt/$_gnupkg/libexec/gnubin:$PATH"
+    fi
+done
+unset _gnupkg
 {{ end -}}
 
 # CUDA (WSL2)

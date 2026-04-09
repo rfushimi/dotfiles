@@ -1,0 +1,17 @@
+{
+  "name": "draftbox",
+  "displayName": "Draftbox",
+  "description": "Instant draft note creation for the Draftbox profile",
+  "version": "0.0.1",
+  "engines": { "vscode": "^1.75.0" },
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "draftbox.newNote",
+        "title": "Draftbox: New Note"
+      }
+    ]
+  }
+}

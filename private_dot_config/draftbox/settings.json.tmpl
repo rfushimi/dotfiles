@@ -1,0 +1,131 @@
+{
+  // === Auto Save & Hot Exit ===
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 800,
+  "files.hotExit": "onExitAndWindowClose",
+
+  // === Window Behavior ===
+  "window.restoreWindows": "all",
+  "workbench.startupEditor": "none",
+  "workbench.tips.enabled": false,
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+
+  // === Default Language ===
+  "files.defaultLanguage": "markdown",
+
+  // === Explorer ===
+  "explorer.confirmDelete": false,
+  "explorer.sortOrder": "modified",
+  "files.exclude": {
+    "**/.vscode": true
+  },
+
+  // === Editor ===
+  "editor.wordWrap": "on",
+  "editor.lineNumbers": "off",
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "HackGen35 Nerd",
+  "editor.fontSize": 15,
+  "editor.lineHeight": 1.8,
+  "editor.padding.top": 16,
+  "editor.padding.bottom": 16,
+  "editor.renderWhitespace": "none",
+  "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.folding": false,
+  "editor.glyphMargin": false,
+  "editor.guides.indentation": false,
+  "editor.matchBrackets": "never",
+  "editor.occurrencesHighlight": "off",
+  "editor.scrollBeyondLastLine": true,
+  "editor.scrollbar.verticalScrollbarSize": 6,
+
+  // === Theme ===
+  "workbench.colorTheme": "Dark+",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#1e1e1e",
+    "statusBar.foreground": "#888888",
+    "statusBar.noFolderBackground": "#1e1e1e",
+    "statusBar.debuggingBackground": "#1e1e1e",
+    "statusBar.debuggingForeground": "#888888",
+    "statusBarItem.remoteBackground": "#1e1e1e",
+    "statusBarItem.remoteForeground": "#888888",
+    "statusBarItem.hoverBackground": "#2a2a2a",
+    "editor.focusedStackFrameHighlightBackground": "#00000000",
+    "focusBorder": "#00000000",
+    "editorGroup.border": "#00000000"
+  },
+  "editor.stickyScroll.enabled": false,
+  "workbench.layoutControl.enabled": false,
+
+  "editor.renderLineHighlight": "none",
+
+  // === AI: Gemini only, disable Copilot ===
+  "github.copilot.enable": {
+    "*": false
+  },
+  "github.copilot.chat.enabled": false,
+  "editor.emptySelectionClipboard": true,
+  "chat.editor.wordWrap": "off",
+  "github.copilot.editor.enableCodeActions": false,
+  "workbench.editor.empty.hint": "hidden",
+
+  // === Write Assist AI ===
+  "writeAssistAi.customActions": [
+    {
+      "label": "Translate to English",
+      "prompt": "Translate the following text to natural, fluent English. Output only the translated text, no explanation."
+    },
+    {
+      "label": "Translate to Japanese",
+      "prompt": "Translate the following text to natural Japanese. Output only the translated text, no explanation."
+    },
+    {
+      "label": "Proofread English",
+      "prompt": "Proofread and fix grammar, spelling, and style issues in the following English text. Keep the original meaning and tone. Output only the corrected text."
+    },
+    {
+      "label": "Make Formal",
+      "prompt": "Rewrite the following text in a formal, professional tone. Output only the rewritten text."
+    },
+    {
+      "label": "Summarize",
+      "prompt": "Summarize the following text in 1-3 concise sentences. Output only the summary."
+    }
+  ],
+
+  // === Zen-like: hide distractions ===
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": true,
+  "breadcrumbs.enabled": false,
+
+  // === VS Notes ===
+  "vsnotes.defaultNotePath": "~/Draftbox",
+  "vsnotes.defaultNoteTitle": "{dt}_{title}.{ext}",
+  "vsnotes.defaultNoteName": "Untitled",
+  "vsnotes.listRecentLimit": 30,
+  "vsnotes.tokens": [
+    {
+      "type": "datetime",
+      "token": "{dt}",
+      "format": "YYYY-MM-DD_HH-mm",
+      "description": "Insert formatted datetime"
+    },
+    {
+      "type": "title",
+      "token": "{title}",
+      "description": "Insert note title",
+      "format": "slug"
+    },
+    {
+      "type": "extension",
+      "token": "{ext}",
+      "description": "Insert file extension",
+      "format": "md"
+    }
+  ],
+  "chat.viewSessions.orientation": "stacked"
+}

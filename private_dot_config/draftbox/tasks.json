@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "New Draft Note",
+      "type": "shell",
+      "command": "FILE=$(${env:HOME}/.bin/draftnew --create-only) && code --goto \"$FILE:1\"",
+      "presentation": {
+        "reveal": "never",
+        "close": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

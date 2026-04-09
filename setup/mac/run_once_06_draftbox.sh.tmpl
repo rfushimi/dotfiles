@@ -1,0 +1,61 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "darwin" }}
+
+# Hide CotEditor from Spotlight
+if [ -d "/Applications/CotEditor.app" ] && [ ! -f "/Applications/CotEditor.app/.metadata_never_index" ]; then
+  sudo touch /Applications/CotEditor.app/.metadata_never_index
+  echo "Hidden CotEditor from Spotlight"
+fi
+
+# Create Draftbox.app for Spotlight launch
+APP_DIR="/Applications/Draftbox.app"
+if [ ! -d "$APP_DIR" ]; then
+  CONTENTS="$APP_DIR/Contents"
+  MACOS="$CONTENTS/MacOS"
+  mkdir -p "$MACOS"
+
+  cat > "$MACOS/Draftbox" << 'EOF'
+#!/bin/bash
+exec "$HOME/.bin/draftnew"
+EOF
+  chmod +x "$MACOS/Draftbox"
+
+  cat > "$CONTENTS/Info.plist" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key>
+  <string>Draftbox</string>
+  <key>CFBundleDisplayName</key>
+  <string>Draftbox</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.rfushimi.draftbox</string>
+  <key>CFBundleVersion</key>
+  <string>1.0</string>
+  <key>CFBundleShortVersionString</key>
+  <string>1.0</string>
+  <key>CFBundleExecutable</key>
+  <string>Draftbox</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>LSBackgroundOnly</key>
+  <true/>
+</dict>
+</plist>
+EOF
+
+  mdimport "$APP_DIR"
+  echo "Created Draftbox.app"
+fi
+
+# Ensure VS Code extension symlink
+EXT_SRC="$HOME/.config/draftbox/vscode-extension"
+EXT_DST="$HOME/.vscode/extensions/draftbox-0.0.1"
+if [ -d "$EXT_SRC" ] && [ ! -L "$EXT_DST" ]; then
+  mkdir -p "$(dirname "$EXT_DST")"
+  ln -sf "$EXT_SRC" "$EXT_DST"
+  echo "Linked Draftbox VS Code extension"
+fi
+
+{{ end }}

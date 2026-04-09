@@ -25,9 +25,9 @@ hs.hotkey.bind({"cmd"}, "`", function ()
     hs.application.launchOrFocus("Ghostty")
 end)
 
--- Draftbox: create a new draft note and open it instantly
+-- Draftbox: create a new draft note and open it instantly (async)
 hs.hotkey.bind({"cmd"}, "7", function ()
-    hs.execute(os.getenv("HOME") .. "/.bin/draftnew", true)
+    hs.task.new(os.getenv("HOME") .. "/.bin/draftnew", nil):start()
 end)
 
 local window_management = require "modules.window_manager"
