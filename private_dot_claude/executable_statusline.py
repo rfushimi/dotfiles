@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Pattern 5: Braille dots - dotted progress bar using braille characters"""
-import json, sys
+import json, os, sys
 
 data = json.load(sys.stdin)
 
@@ -38,6 +38,10 @@ def fmt(label, pct):
 
 model = data.get('model', {}).get('display_name', 'Claude')
 parts = [model]
+
+cwd = data.get('cwd', '')
+if cwd:
+    parts.append(f'\033[1m{os.path.basename(cwd)}{R}')
 
 ctx = data.get('context_window', {}).get('used_percentage')
 if ctx is not None:
