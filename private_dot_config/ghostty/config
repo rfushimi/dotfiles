@@ -8,7 +8,6 @@ adjust-cell-height = 5%
 background = 000000
 foreground = bbbbbb
 background-opacity = 0.92
-background-blur = macos-glass-regular
 cursor-color = bbbbbb
 cursor-style = block
 cursor-style-blink = false
@@ -51,9 +50,11 @@ quick-terminal-animation-duration = 0.1
 quick-terminal-autohide = true
 
 # Claude Code: Shift+Enter for newline
-keybind = shift+enter=text:\n
+keybind = shift+enter=text:\x1b[13;2u
 
-# tmux window switching
+# tmux window switching (unbind default goto_split, then rebind)
+keybind = cmd+left_bracket=unbind
+keybind = cmd+right_bracket=unbind
 keybind = cmd+left_bracket=text:\x01p
 keybind = cmd+right_bracket=text:\x01n
 
