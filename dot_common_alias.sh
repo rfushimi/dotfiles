@@ -26,7 +26,6 @@ else
 fi
 
 alias code-chezmoi="code ~/.local/share/chezmoi/"
-alias code-sd="code ~/src/scripts"
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
 
