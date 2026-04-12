@@ -41,9 +41,14 @@ Host wsl
     # kex algorithms; pin to curve25519 until the host is upgraded.
     KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 
-# mac-studio: plain attach to the `main` tmux session.
-# This works everywhere (Ghostty, Linux, corp mac). Use `mac-studio-cc`
-# from iTerm2 for native pane integration via tmux control mode.
+# mac-studio: attach the `main` tmux session.
+# When launched from iTerm2, use tmux control mode (-CC) for native
+# pane integration. From every other terminal (Ghostty, Linux, corp
+# mac) fall back to a plain attach. The Match block comes first so
+# its RemoteCommand wins over the Host default when it matches.
+Match host mac-studio exec "test \"$TERM_PROGRAM\" = iTerm.app || test \"$LC_TERMINAL\" = iTerm2"
+    RemoteCommand /opt/homebrew/bin/tmux -CC new -A -s main
+
 Host mac-studio
     User ryohei
     #HostName 192.168.0.230
@@ -52,8 +57,9 @@ Host mac-studio
     RequestTTY yes
     RemoteCommand /opt/homebrew/bin/tmux new -A -s main
 
-# iTerm2-only: tmux -CC (control mode). Breaks in Ghostty and other
-# terminals that don't speak the control-mode protocol.
+# Force iTerm2-style tmux -CC regardless of the invoking terminal.
+# Useful when running ssh from inside a nested environment where
+# TERM_PROGRAM is not propagated.
 Host mac-studio-cc
     User ryohei
     HostName 100.97.195.68
