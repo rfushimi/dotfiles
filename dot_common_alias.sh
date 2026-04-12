@@ -14,15 +14,15 @@ if [ "$USE_EZA" = "1" ] && command -v eza >/dev/null 2>&1; then
     export EZA_ICONS_AUTO=1
     export EZA_COLORS="di=34:ex=32:ln=36:ur=37:uw=37:ux=37:gr=37:gw=37:gx=37:tr=37:tw=37:tx=37:sn=37:sb=37:da=37:gm=37:uu=37:gu=37"
     alias ls='eza --group-directories-first'
-    alias ll='eza -lg --group-directories-first'
-    alias la='eza -lag --group-directories-first'
+    alias ll='eza -lg --group-directories-first --time-style=long-iso'
+    alias la='eza -lag --group-directories-first --time-style=long-iso'
     alias lt='eza --tree --level=2 --group-directories-first'
-    alias lg='eza -lag --git --group-directories-first'
-    alias lgi='eza -lag --git-ignore --group-directories-first'
+    alias lg='eza -lag --git --group-directories-first --time-style=long-iso'
+    alias lgi='eza -lag --git-ignore --group-directories-first --time-style=long-iso'
 else
     alias ls='ls --color=auto'
-    alias ll='ls -lAh --color=auto'
-    alias la='ls -a --color=auto'
+    alias ll='ls -lAh --color=auto --time-style=long-iso'
+    alias la='ls -a --color=auto --time-style=long-iso'
 fi
 
 alias code-chezmoi="code ~/.local/share/chezmoi/"
