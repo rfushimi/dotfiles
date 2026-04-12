@@ -15,7 +15,7 @@ dot_venv/
 
 # ~/.claude - only sync config and skill source files
 private_dot_claude/*
-!private_dot_claude/settings.json
+!private_dot_claude/settings.json.tmpl
 !private_dot_claude/executable_statusline.py
 !private_dot_claude/dot_claude/
 !private_dot_claude/skills/
