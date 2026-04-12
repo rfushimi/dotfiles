@@ -2,6 +2,10 @@
 dot_DS_Store
 corp-dotfiles
 
+# Stray files that must never land in the repo
+/hostname
+/compile_commands.json
+
 # Build artifacts & dependencies (global)
 node_modules/
 __pycache__/
