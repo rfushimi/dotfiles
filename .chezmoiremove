@@ -18,3 +18,21 @@ compile_commands.json
 
 # Removed 2026-04-12: duplicate of ~/.utils/api (pdm-managed, CLAUDE.md mandates uv)
 .utils/src/LLMTools
+
+# Removed 2026-04-12: redundant with CLAUDE.md / GEMINI.md
+.LLM.md
+
+# Removed 2026-04-12: mis-placed local settings at ~/.claude/.claude/
+.claude/.claude/settings.local.json
+
+# Renamed 2026-04-12: zshrc modules moved to numeric load-order prefixes
+.zsh/zshrc/env.sh
+.zsh/zshrc/path.sh
+.zsh/zshrc/os.sh
+.zsh/zshrc/arch.sh
+.zsh/zshrc/host.sh
+.zsh/zshrc/alias.sh
+.zsh/zshrc/functions.sh
+.zsh/zshrc/fzf.sh
+.zsh/zshrc/settings.sh
+.zsh/zshrc/ud.sh

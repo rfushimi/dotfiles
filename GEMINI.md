@@ -46,8 +46,8 @@ This directory (`~/.local/share/chezmoi`) contains the source files for fushimi'
 
 ## Common Tasks
 
-*   **Add an alias (Zsh):** Add to `dot_zsh/zshrc/alias.sh`.
-*   **Add to PATH (Zsh):** Add to `dot_zsh/zshrc/path.sh`.
+*   **Add an alias (Zsh):** Add to `dot_zsh/zshrc/40_alias.sh`.
+*   **Add to PATH (Zsh):** Add to `dot_zsh/zshrc/10_path.sh`.
 *   **Install software:** Add to the appropriate `setup/` script (e.g., `setup/mac/run_once_brew.sh`).
 
 Remember to run `chezmoi apply` after making changes.

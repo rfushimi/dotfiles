@@ -5,7 +5,7 @@
 [[ $- != *i* ]] && return
 
 # Source centralized environment settings (PATH, tools, etc.)
-[ -f "$HOME/.zsh/zshrc/env.sh" ] && source "$HOME/.zsh/zshrc/env.sh"
+[ -f "$HOME/.zsh/zshrc/00_env.sh" ] && source "$HOME/.zsh/zshrc/00_env.sh"
 
 # ============================================================================
 # Shell Options
@@ -68,7 +68,7 @@ alias zs="source ~/.bashrc"
 # Functions
 # ============================================================================
 # Source shared functions
-[ -f "$HOME/.zsh/zshrc/functions.sh" ] && source "$HOME/.zsh/zshrc/functions.sh"
+[ -f "$HOME/.zsh/zshrc/41_functions.sh" ] && source "$HOME/.zsh/zshrc/41_functions.sh"
 
 # ============================================================================
 # Bash Completion
