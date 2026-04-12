@@ -12,8 +12,8 @@ cursor-color = bbbbbb
 cursor-style = block
 cursor-style-blink = false
 
-# Scrollback (tmux handles history)
-scrollback-limit = 0
+# Scrollback
+scrollback-limit = 10000000
 
 # Window
 macos-option-as-alt = false
