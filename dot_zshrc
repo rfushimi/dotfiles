@@ -105,3 +105,12 @@ zinit light romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 POWERLEVEL9K_VCS_MAX_SYNC_LATENCY=0
 POWERLEVEL9K_VCS_ASYNC=1
+
+# ============================================================================
+# atuin - sqlite shell history with search UI and cross-machine sync
+# ============================================================================
+# Ctrl-R opens atuin's fuzzy picker; up arrow keeps its default zsh/
+# history-substring-search behavior (muscle memory intact).
+if command -v atuin >/dev/null; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
