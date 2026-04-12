@@ -1,4 +1,9 @@
 #!/bin/bash
+{{- if .is_corp }}
+# Corp machines must not touch personal Bitwarden — SSH keys for corp
+# hosts come from corp-dotfiles, not from the personal akey vault.
+exit 0
+{{- else }}
 
 if [[ ! -f $HOME/.ssh/akey ]]; then
     if ! command -v bw >/dev/null 2>&1; then
@@ -18,3 +23,4 @@ if [[ ! -f $HOME/.ssh/akey ]]; then
     fi
     chmod 600 $HOME/.ssh/akey
 fi
+{{- end }}
