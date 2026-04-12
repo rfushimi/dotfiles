@@ -1,6 +1,6 @@
 [user]
 	name = {{ .chezmoi.username }}
-	email = {{ .email }}
+	email = {{ if .is_corp }}fushimi@google.com{{ else }}fushimi.ryohei@gmail.com{{ end }}
 [pull]
 	rebase = true
 [init]

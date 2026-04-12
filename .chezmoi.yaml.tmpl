@@ -6,7 +6,5 @@ mode: symlink
 {{ end -}}
 
 {{ $is_corp := promptBoolOnce . "is_corp" "Is this a corporate machine" $is_corp_default -}}
-{{ $email := promptStringOnce . "email" "What is your email address" "fushimi.ryohei@gmail.com" }}
 data:
   is_corp: {{ $is_corp }}
-  email: {{ $email | quote }}
