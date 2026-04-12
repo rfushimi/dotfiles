@@ -14,7 +14,16 @@ alias code-sd="code ~/src/scripts"
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
 
-alias tm="tmux -CC new -A -s iterm -t main"
+# tm - attach (or create) the main tmux session.
+# Uses iTerm2's tmux control mode (-CC) when launched from iTerm2,
+# and a plain tmux attach everywhere else (Ghostty, Linux, WSL).
+tm() {
+    if [ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$LC_TERMINAL" = "iTerm2" ]; then
+        tmux -CC new -A -s main
+    else
+        tmux new -A -s main
+    fi
+}
 
 # Open internal short links (b/123, cl/456, cr/789, go/foo-bar)
 o() {
