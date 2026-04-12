@@ -3,6 +3,19 @@
     "type": "command",
     "command": "~/.claude/statusline.py"
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/guard-destructive-bash.sh"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "claude-code-setup@claude-plugins-official": true,
     "github@claude-plugins-official": true,
