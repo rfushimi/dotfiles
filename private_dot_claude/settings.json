@@ -1,5 +1,7 @@
 {
-  "model": "opus[1m]",
+  "permissions": {
+    "defaultMode": "default"
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.py"
@@ -18,6 +20,5 @@
     "feature-dev@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
   },
-  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true
 }
