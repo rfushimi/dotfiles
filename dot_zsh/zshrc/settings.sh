@@ -26,7 +26,3 @@ setopt CORRECT                    # Correct command spelling mistakes
 # Navigation
 setopt auto_cd
 cdpath=(~ ~/dev)
-
-# Ensure Ctrl+C sends SIGINT in ZLE (some environments leave ^C unbound,
-# causing the raw byte 0x03 to be inserted instead of interrupting)
-bindkey "^C" send-break
