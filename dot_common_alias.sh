@@ -6,9 +6,8 @@ alias df="df -h"
 alias ssh-keygen="ssh-keygen -t ed25519 -a 128"
 
 alias w="npx wrangler"
-alias ll='eza -lAh --time-style=long-iso'
-alias la='eza -a'
-alias lt='eza --tree --level=2'
+alias ll='ls -lAh'
+alias la='ls -a'
 
 alias code-chezmoi="code ~/.local/share/chezmoi/"
 alias code-sd="code ~/src/scripts"
