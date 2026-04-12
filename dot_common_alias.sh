@@ -17,4 +17,10 @@ alias a="source .venv/bin/activate"
 alias tm="tmux -CC new -A -s iterm -t main"
 
 # Open internal short links (b/123, cl/456, cr/789, go/foo-bar)
-o() { open "http://$1"; }
+o() {
+    if command -v open >/dev/null 2>&1; then
+        open "http://$1"
+    else
+        xdg-open "http://$1"
+    fi
+}
