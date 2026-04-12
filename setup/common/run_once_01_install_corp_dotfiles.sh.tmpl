@@ -1,11 +1,9 @@
 #!/bin/bash
+{{- if .is_corp }}
 
-{{ if .is_corp }}
-
-# Install corp-dotfiles on corp machines
+# Install corp-dotfiles on corp machines (mac + linux).
 if [ ! -d "$HOME/corp-dotfiles" ]; then
   echo "Cloning corp-dotfiles..."
   git clone sso://user/$USER/corp-dotfiles "$HOME/corp-dotfiles"
 fi
-
-{{ end }}
+{{- end }}
