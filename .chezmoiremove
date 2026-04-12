@@ -1,0 +1,20 @@
+{{/*
+  .chezmoiremove - paths to delete from $HOME on every `chezmoi apply`.
+
+  Add a line here whenever you delete a file/dir from the chezmoi source
+  so that previously-deployed copies are cleaned up on other machines.
+  Paths are relative to $HOME. Templates are supported.
+*/ -}}
+
+# Removed 2026-04-12: dead zsh modules
+.zsh/zshrc/pm2.sh
+.zsh/zshrc/corp.sh
+
+# Removed 2026-04-12: yarn forbidden by CLAUDE.md
+.yarnrc
+
+# Removed 2026-04-12: stray LSP artifact from repo root
+compile_commands.json
+
+# Removed 2026-04-12: duplicate of ~/.utils/api (pdm-managed, CLAUDE.md mandates uv)
+.utils/src/LLMTools
