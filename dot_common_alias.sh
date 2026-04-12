@@ -33,6 +33,10 @@ alias a="source .venv/bin/activate"
 # tm - attach (or create) the main tmux session.
 # Uses iTerm2's tmux control mode (-CC) when launched from iTerm2,
 # and a plain tmux attach everywhere else (Ghostty, Linux, WSL).
+# unalias guard: tm used to be a plain alias, so re-sourcing this
+# file into an old shell would hit "defining function based on
+# alias" in zsh.
+unalias tm 2>/dev/null
 tm() {
     if [ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$LC_TERMINAL" = "iTerm2" ]; then
         tmux -CC new -A -D -s main
