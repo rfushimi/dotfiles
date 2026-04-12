@@ -41,14 +41,27 @@ Host wsl
     # kex algorithms; pin to curve25519 until the host is upgraded.
     KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 
+# mac-studio: plain attach to the `main` tmux session.
+# This works everywhere (Ghostty, Linux, corp mac). Use `mac-studio-cc`
+# from iTerm2 for native pane integration via tmux control mode.
 Host mac-studio
     User ryohei
     #HostName 192.168.0.230
     HostName 100.97.195.68
     IdentityFile ~/.ssh/akey
     RequestTTY yes
-    RemoteCommand /opt/homebrew/bin/tmux -CC new -t main
+    RemoteCommand /opt/homebrew/bin/tmux new -A -s main
 
+# iTerm2-only: tmux -CC (control mode). Breaks in Ghostty and other
+# terminals that don't speak the control-mode protocol.
+Host mac-studio-cc
+    User ryohei
+    HostName 100.97.195.68
+    IdentityFile ~/.ssh/akey
+    RequestTTY yes
+    RemoteCommand /opt/homebrew/bin/tmux -CC new -A -s main
+
+# Raw shell, no tmux — for scp-like or diagnostic sessions.
 Host mac-studio-no-tmux
     User ryohei
     HostName 100.97.195.68
