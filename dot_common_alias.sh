@@ -19,9 +19,9 @@ alias a="source .venv/bin/activate"
 # and a plain tmux attach everywhere else (Ghostty, Linux, WSL).
 tm() {
     if [ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$LC_TERMINAL" = "iTerm2" ]; then
-        tmux -CC new -A -s main
+        tmux -CC new -A -D -s main
     else
-        tmux new -A -s main
+        tmux new -A -D -s main
     fi
 }
 
