@@ -16,8 +16,6 @@
     "code-simplifier@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
-  }
-  {{- if not .is_corp }},
+  },
   "skipDangerousModePermissionPrompt": true
-  {{- end }}
 }
