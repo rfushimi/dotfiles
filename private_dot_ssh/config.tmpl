@@ -37,6 +37,8 @@ Host wsl
     HostName 100.70.86.33
     Port 22
     IdentityFile ~/.ssh/akey
+    # wsl runs an older OpenSSH that doesn't negotiate the newer PQ
+    # kex algorithms; pin to curve25519 until the host is upgraded.
     KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 
 Host mac-studio
