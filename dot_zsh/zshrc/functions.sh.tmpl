@@ -19,9 +19,12 @@ update-dotfiles() {
                 echo "--- Syncing $repo ---"
                 cd "$repo" || continue
                 
-                # Add changes
-                git add .
-                
+                # Stage tracked changes only (`-u`).
+                # Using `git add .` in the past silently swept untracked junk
+                # (e.g. a stray `hostname` file) into sync commits. Untracked
+                # files must be added explicitly by hand.
+                git add -u
+
                 # Commit if changes exist
                 if ! git diff-index --quiet HEAD --; then
                     git commit -m "dotfiles sync $(date +%Y-%m-%d)" || true
