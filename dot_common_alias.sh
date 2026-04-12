@@ -6,9 +6,24 @@ alias df="df -h"
 alias ssh-keygen="ssh-keygen -t ed25519 -a 128"
 
 alias w="npx wrangler"
-alias ls='ls --color=auto'
-alias ll='ls -lAh --color=auto'
-alias la='ls -a --color=auto'
+
+# ls family. Toggle with USE_EZA=0 (or unset) in the environment to
+# fall back to plain GNU ls. Defaults to eza when it is installed.
+: "${USE_EZA:=1}"
+if [ "$USE_EZA" = "1" ] && command -v eza >/dev/null 2>&1; then
+    export EZA_ICONS_AUTO=1
+    export EZA_COLORS="di=34:ex=32:ln=36:ur=37:uw=37:ux=37:gr=37:gw=37:gx=37:tr=37:tw=37:tx=37:sn=37:sb=37:da=37:gm=37:uu=37:gu=37"
+    alias ls='eza --group-directories-first'
+    alias ll='eza -lg --group-directories-first'
+    alias la='eza -lag --group-directories-first'
+    alias lt='eza --tree --level=2 --group-directories-first'
+    alias lg='eza -lag --git --group-directories-first'
+    alias lgi='eza -lag --git-ignore --group-directories-first'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -lAh --color=auto'
+    alias la='ls -a --color=auto'
+fi
 
 alias code-chezmoi="code ~/.local/share/chezmoi/"
 alias code-sd="code ~/src/scripts"
