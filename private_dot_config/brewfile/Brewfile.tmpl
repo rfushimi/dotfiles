@@ -10,7 +10,9 @@ brew autoconf
 brew automake
 brew bash-completion
 brew bdw-gc
+{{- if not .is_corp }}
 brew bitwarden-cli
+{{- end }}
 brew boost
 brew brotli
 brew c-ares
@@ -215,7 +217,9 @@ cask adobe-creative-cloud
 cask alacritty
 cask android-platform-tools
 cask azookey
+{{- if not .is_corp }}
 cask bitwarden
+{{- end }}
 cask coteditor
 cask discord
 cask font-hackgen
@@ -255,7 +259,9 @@ cask kindle
 # App Store applications
 appstore 302584613 Amazon Kindle (7.54)
 appstore 1168254295 AmorphousDiskMark (4.0.1)
+{{- if not .is_corp }}
 appstore 1352778147 Bitwarden (2026.2.1)
+{{- end }}
 appstore 1500855883 CapCut (8.3.0)
 appstore 1024640650 CotEditor (6.2.6)
 appstore 640199958 Developer (10.8.3)
