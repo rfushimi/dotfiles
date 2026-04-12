@@ -36,3 +36,9 @@ compile_commands.json
 .zsh/zshrc/fzf.sh
 .zsh/zshrc/settings.sh
 .zsh/zshrc/ud.sh
+
+# Removed 2026-04-12: orphaned manual files never tracked in chezmoi source.
+# directories.sh duplicates 60_settings.sh / cdpath; tmux.sh is the old
+# iTerm2 -CC auto-attach that we replaced with the 'tm' function.
+.zsh/zshrc/directories.sh
+.zsh/zshrc/tmux.sh
