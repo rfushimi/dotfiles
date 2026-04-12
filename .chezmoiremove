@@ -42,3 +42,8 @@ compile_commands.json
 # iTerm2 -CC auto-attach that we replaced with the 'tm' function.
 .zsh/zshrc/directories.sh
 .zsh/zshrc/tmux.sh
+
+# Removed 2026-04-12: 24h auto-sync was dangerous (silently -X theirs
+# rebased and clobbered changes from other machines).
+.zsh/zshrc/70_ud.sh
+.cache/ud-last-run
