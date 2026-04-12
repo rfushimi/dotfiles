@@ -26,6 +26,9 @@ else
 fi
 
 alias code-chezmoi="code ~/.local/share/chezmoi/"
+# chezmoi edit with auto-apply. Replaces the "edit target directly"
+# convenience we lost when switching from mode: symlink to mode: file.
+alias ce='chezmoi edit --apply'
 alias activate="source .venv/bin/activate"
 alias a="source .venv/bin/activate"
 
