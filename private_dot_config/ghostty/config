@@ -56,8 +56,8 @@ keybind = shift+enter=text:\x1b[13;2u
 # The unbind alone was not enough because the Window menu items still
 # captured the keystroke, so reassign goto_split to cmd+shift+[/] and
 # unbind the originals before sending the tmux sequences.
-keybind = cmd+shift+left_bracket=goto_split:previous
-keybind = cmd+shift+right_bracket=goto_split:next
+keybind = cmd+ctrl+left_bracket=goto_split:previous
+keybind = cmd+ctrl+right_bracket=goto_split:next
 keybind = cmd+left_bracket=unbind
 keybind = cmd+right_bracket=unbind
 keybind = cmd+left_bracket=text:\x01p
