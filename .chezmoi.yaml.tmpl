@@ -1,4 +1,8 @@
 mode: file
+# Honor .chezmoiremove on every `chezmoi apply`. Without this, chezmoi
+# requires --remove explicitly and stale files (e.g. old zshrc module
+# names after a rename) linger in $HOME.
+remove: true
 
 {{ $is_corp_default := false -}}
 {{ if (or (hasPrefix "fushimi" .chezmoi.username) (hasPrefix "ryohei" .chezmoi.username)) -}}
