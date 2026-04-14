@@ -41,6 +41,17 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# deno
+export DENO_INSTALL="$HOME/.deno"
+[ -d "$DENO_INSTALL/bin" ] && export PATH="$DENO_INSTALL/bin:$PATH"
+
+{{ if not .is_corp -}}
+# gcloud (standalone install under XDG_DATA_HOME)
+if [ -d "$HOME/.local/share/google-cloud-sdk/bin" ]; then
+    export PATH="$HOME/.local/share/google-cloud-sdk/bin:$PATH"
+fi
+{{ end -}}
+
 # Cargo env
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 

@@ -4,20 +4,19 @@ font-size = 16
 font-thicken = true
 adjust-cell-height = 5%
 
-# Colors
-background = 000000
-foreground = bbbbbb
-background-opacity = 0.92
-cursor-color = bbbbbb
+# Theme / Colors
+theme = Flexoki Dark
+background-opacity = 0.98
 cursor-style = block
 cursor-style-blink = false
 
-# Scrollback
+# Scrollback / Scrollbar
 scrollback-limit = 10000000
+scrollbar = system
 
 # Window
 macos-option-as-alt = false
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 window-save-state = always
 window-padding-x = 8
 window-padding-y = 4
@@ -38,6 +37,7 @@ mouse-hide-while-typing = true
 
 # Working directory
 working-directory = home
+window-inherit-working-directory = true
 
 # Auto update
 auto-update = download
@@ -48,6 +48,10 @@ quick-terminal-position = top
 quick-terminal-size = 40%
 quick-terminal-animation-duration = 0.1
 quick-terminal-autohide = true
+
+# Tab navigation
+keybind = cmd+shift+left_bracket=previous_tab
+keybind = cmd+shift+right_bracket=next_tab
 
 # Claude Code: Shift+Enter for newline
 keybind = shift+enter=text:\x1b[13;2u
@@ -74,7 +78,6 @@ keybind = cmd+7=text:\x01\x37
 keybind = cmd+8=text:\x01\x38
 keybind = cmd+9=text:\x01\x39
 
-# Theme (uncomment one to try)
+# Other themes to try later
 # theme = tokyonight
-# theme = Kanagawa Dragon
 # theme = Dracula
