@@ -114,3 +114,7 @@ POWERLEVEL9K_VCS_ASYNC=1
 if command -v atuin >/dev/null; then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
+
+# bun completions
+[ -s "/usr/local/google/home/fushimi/.bun/_bun" ] && source "/usr/local/google/home/fushimi/.bun/_bun"
+. "/usr/local/google/home/fushimi/.deno/env"
