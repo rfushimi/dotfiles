@@ -5,6 +5,11 @@
 # update-dotfiles - sync dotfiles repos
 # Uses a subshell to ensure PWD is never changed in the parent shell
 update-dotfiles() {
+    local add_untracked=false
+    if [[ "${1:-}" == "--add-untracked" ]]; then
+        add_untracked=true
+    fi
+
     (
         local repos=(
             "$HOME/.local/share/chezmoi"
@@ -18,11 +23,21 @@ update-dotfiles() {
             if [ -d "$repo" ] && [ -d "$repo/.git" ]; then
                 echo "--- Syncing $repo ---"
                 cd "$repo" || continue
-                
-                # Stage tracked changes only (`-u`).
-                # Using `git add .` in the past silently swept untracked junk
-                # (e.g. a stray `hostname` file) into sync commits. Untracked
-                # files must be added explicitly by hand.
+
+                # Warn about untracked files (respects .gitignore)
+                local untracked
+                untracked=$(git ls-files --others --exclude-standard)
+                if [[ -n "$untracked" ]]; then
+                    if $add_untracked; then
+                        echo "Adding untracked files:"
+                        echo "$untracked" | sed 's/^/  /'
+                        echo "$untracked" | xargs git add
+                    else
+                        echo "⚠ Untracked files (use 'ud --add-untracked' to include):"
+                        echo "$untracked" | sed 's/^/  /'
+                    fi
+                fi
+
                 git add -u
 
                 # Commit if changes exist

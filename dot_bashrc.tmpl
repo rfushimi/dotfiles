@@ -57,7 +57,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=864000
 # Aliases
 # ============================================================================
 alias reload="source ~/.bashrc"
-alias ud="update-dotfiles && chezmoi apply && source ~/.bashrc"
+ud() { update-dotfiles "$@" && chezmoi apply && source ~/.bashrc; }
 alias sz="source ~/.bashrc"
 alias zs="source ~/.bashrc"
 
