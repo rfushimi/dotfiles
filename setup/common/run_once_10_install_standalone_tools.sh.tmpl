@@ -1,0 +1,98 @@
+#!/bin/bash
+# Install fast-moving CLI tools via their official standalone installers
+# instead of Homebrew. Homebrew lags 1-2 weeks behind releases and has caused
+# concrete issues (e.g. pnpm v9/v10 coexistence → store version mismatch).
+#
+# See memory: toolchain_standalone_plan.md
+
+set -euo pipefail
+
+# --- uv (Astral) ---------------------------------------------------------
+if ! command -v uv >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/uv" ]]; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+# --- pnpm (standalone, PNPM_HOME=~/.local/share/pnpm) --------------------
+if [[ ! -x "$HOME/.local/share/pnpm/pnpm" ]]; then
+    curl -fsSL https://get.pnpm.io/install.sh | env PNPM_HOME="$HOME/.local/share/pnpm" SHELL="$(which bash)" sh -
+fi
+
+# --- bun -----------------------------------------------------------------
+if [[ ! -x "$HOME/.bun/bin/bun" ]]; then
+    curl -fsSL https://bun.sh/install | bash
+fi
+
+# --- deno ----------------------------------------------------------------
+if [[ ! -x "$HOME/.deno/bin/deno" ]]; then
+    curl -fsSL https://deno.land/install.sh | sh -s -- -y
+fi
+
+{{ if not .is_corp -}}
+# --- Coding agents (personal only; corp policy forbids external LLM CLIs) ---
+# Installed via pnpm global so they track upstream releases, not Homebrew.
+if [[ -x "$HOME/.local/share/pnpm/pnpm" ]]; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
+    if ! command -v claude >/dev/null 2>&1; then
+        pnpm add -g @anthropic-ai/claude-code
+    fi
+    if ! command -v codex >/dev/null 2>&1; then
+        pnpm add -g @openai/codex
+    fi
+fi
+
+# --- gcloud (personal only; corp policy forbids it) ----------------------
+if [[ ! -x "$HOME/.local/share/google-cloud-sdk/bin/gcloud" ]]; then
+    mkdir -p "$HOME/.local/share"
+    (
+        cd "$HOME/.local/share"
+        {{ if eq .chezmoi.os "darwin" -}}
+        {{   if eq .chezmoi.arch "arm64" -}}
+        curl -fsSLO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz
+        tar -xf google-cloud-cli-darwin-arm.tar.gz
+        rm google-cloud-cli-darwin-arm.tar.gz
+        {{-   else -}}
+        curl -fsSLO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-x86_64.tar.gz
+        tar -xf google-cloud-cli-darwin-x86_64.tar.gz
+        rm google-cloud-cli-darwin-x86_64.tar.gz
+        {{-   end }}
+        {{- else -}}
+        curl -fsSLO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+        tar -xf google-cloud-cli-linux-x86_64.tar.gz
+        rm google-cloud-cli-linux-x86_64.tar.gz
+        {{- end }}
+        ./google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=false --command-completion=false
+    )
+fi
+
+# --- aws-cli v2 (personal only) ------------------------------------------
+if ! command -v aws >/dev/null 2>&1; then
+    tmpdir="$(mktemp -d)"
+    (
+        cd "$tmpdir"
+        {{ if eq .chezmoi.os "darwin" -}}
+        curl -fsSLO https://awscli.amazonaws.com/AWSCLIV2.pkg
+        installer -pkg AWSCLIV2.pkg -target CurrentUserHomeDirectory \
+            -applyChoiceChangesXML <(cat <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <array>
+    <dict>
+      <key>choiceAttribute</key><string>customLocation</string>
+      <key>attributeSetting</key><string>{{ .chezmoi.homeDir }}/.local</string>
+      <key>choiceIdentifier</key><string>default</string>
+    </dict>
+  </array>
+</plist>
+EOF
+            ) || true
+        {{- else -}}
+        curl -fsSLO https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        unzip -q awscli-exe-linux-x86_64.zip
+        ./aws/install -i "$HOME/.local/aws-cli" -b "$HOME/.local/bin"
+        {{- end }}
+    )
+    rm -rf "$tmpdir"
+fi
+{{- end }}
