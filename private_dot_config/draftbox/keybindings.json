@@ -1,0 +1,18 @@
+[
+  {
+    "key": "cmd+n",
+    "command": "draftbox.newNote"
+  },
+  {
+    "key": "cmd+t",
+    "command": "draftbox.newNote"
+  },
+  {
+    "key": "cmd+o",
+    "command": "vsnotes.listNotes"
+  },
+  {
+    "key": "cmd+shift+f",
+    "command": "vsnotes.search"
+  }
+]
