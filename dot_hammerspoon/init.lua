@@ -25,9 +25,31 @@ hs.hotkey.bind({"cmd"}, "`", function ()
     hs.application.launchOrFocus("Ghostty")
 end)
 
--- Draftbox: create a new draft note and open it instantly (async)
+-- Draftbox: create a new draft note and open it instantly.
+-- If a Draftbox VS Code window is already open, raise it and send Cmd+N to
+-- trigger the `draftbox.newNote` extension command in-process (no Dock flash).
+-- Otherwise fall back to the `draftnew` shell script.
 hs.hotkey.bind({"cmd"}, "7", function ()
-    hs.task.new(os.getenv("HOME") .. "/.bin/draftnew", nil):start()
+    local code = hs.application.find("com.microsoft.VSCode")
+    local target
+    if code then
+        for _, w in ipairs(code:allWindows()) do
+            local title = w:title() or ""
+            if title:find("Draftbox") then
+                target = w
+                break
+            end
+        end
+    end
+
+    if target then
+        target:focus()
+        hs.timer.doAfter(0.05, function()
+            hs.eventtap.keyStroke({"cmd"}, "n", 0)
+        end)
+    else
+        hs.task.new(os.getenv("HOME") .. "/.bin/draftnew", nil):start()
+    end
 end)
 
 local window_management = require "modules.window_manager"

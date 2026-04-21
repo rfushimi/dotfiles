@@ -25,8 +25,8 @@ if [ ! -L "$DRAFT_DIR/.vscode/tasks.json" ]; then
   ln -sf "$CONFIG_DIR/tasks.json" "$DRAFT_DIR/.vscode/tasks.json"
 fi
 
-# Find existing empty draft
-for f in "$DRAFT_DIR"/*/*.md; do
+# Find existing empty draft (today's directory only)
+for f in "$DAY_DIR"/*.md; do
   [ -f "$f" ] || continue
   content=$(tr -d '[:space:]' < "$f")
   if [ -z "$content" ]; then
