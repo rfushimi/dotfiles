@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-# Source centralized environment settings (PATH, tools, etc.)
-# This file is shared between Bash and Zsh.
-[ -f "$HOME/.zsh/zshrc/00_env.sh" ] && source "$HOME/.zsh/zshrc/00_env.sh"
-
 # GNU coreutils: must be set here (not .zshenv) because macOS path_helper
 # in /etc/zprofile reorders PATH after .zshenv, pushing gnubin behind /usr/bin.
 if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
