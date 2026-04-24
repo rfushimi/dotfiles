@@ -174,7 +174,7 @@ The `dot_utils/api/` directory implements a modular LLM client system:
 ## Important Notes
 
 - `.chezmoiignore` excludes build artifacts, node_modules, virtualenvs, IDE configs
-- The repository includes a `dot_gemini/GEMINI.md` file with Google-internal workflow instructions (relevant only in corporate context)
+
 - Zsh completions for `sd` are auto-generated in `~/.zsh/completions`
 - Git is configured to use SSH for GitHub URLs (even if HTTPS is specified)
 - Uses uv for Python dependency management (modern pip replacement)

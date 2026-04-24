@@ -22,7 +22,7 @@ hs.hotkey.bind({"cmd"}, "6", function ()
     hs.application.launchOrFocus("Google Calendar")
 end)
 hs.hotkey.bind({"cmd"}, "`", function ()
-    hs.application.launchOrFocus("Ghostty")
+    hs.application.launchOrFocus("{{ if .is_corp }}iTerm2{{ else }}Ghostty{{ end }}")
 end)
 
 -- Draftbox: create a new draft note and open it instantly.

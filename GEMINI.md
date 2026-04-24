@@ -33,13 +33,11 @@ This directory (`~/.local/share/chezmoi`) contains the source files for fushimi'
 *   `dot_zshrc`: Main entry point for Zsh configuration.
 *   `dot_bashrc.tmpl`: Main entry point for Bash configuration.
 *   `dot_gitconfig.tmpl`: Git configuration.
-*   `LLM.md`: **IMPORTANT** Detailed instructions for an LLM (like you) on how to edit files in this repository. Consult this file for specific guidance on where to make changes.
+
 
 ## Making Changes (LLM Guidelines)
 
-**ALWAYS CONSULT `LLM.md` before making changes.** It contains specific instructions on where to add aliases, paths, environment variables, and other configurations, especially for the Zsh setup.
-
-*   **Zsh:** Most changes will go into one of the files in `dot_zsh/zshrc/`. `LLM.md` has a table guiding where to put things (e.g., `path.sh` for PATH, `alias.sh` for aliases).
+*   **Zsh:** Most changes will go into one of the files in `dot_zsh/zshrc/` (e.g., `10_path.sh` for PATH, `40_alias.sh` for aliases).
 *   **Bash:** Edit `dot_bashrc.tmpl`.
 *   **Git:** Edit `dot_gitconfig.tmpl`.
 *   **New Scripts:** Add to `dot_bin/` with `executable_` prefix.
