@@ -4,11 +4,13 @@
 [ -f "$HOME/.common_alias.sh" ] && source "$HOME/.common_alias.sh"
 
 alias reload="source ~/.zshrc"
+
 ud() {
     update-dotfiles "$@"
     chezmoi apply
     source ~/.zshrc
 }
+
 alias sz="source ~/.zshrc"
 alias zs="source ~/.zshrc"
 
