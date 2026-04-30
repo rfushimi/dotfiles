@@ -4,7 +4,11 @@
 [ -f "$HOME/.common_alias.sh" ] && source "$HOME/.common_alias.sh"
 
 alias reload="source ~/.zshrc"
-ud() { update-dotfiles "$@" && chezmoi apply && source ~/.zshrc; }
+ud() {
+    update-dotfiles "$@"
+    chezmoi apply
+    source ~/.zshrc
+}
 alias sz="source ~/.zshrc"
 alias zs="source ~/.zshrc"
 
@@ -17,9 +21,6 @@ alias gs="git status"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git pull"
-
-# Gemini CLI with dotfiles workspaces
-alias gemini-dot="gemini --include-directories ~/.local/share/chezmoi,~/corp-dotfiles"
 
 # Draftbox: quick note-taking in VS Code
 alias draft='code ~/Draftbox --profile "Draftbox"'
