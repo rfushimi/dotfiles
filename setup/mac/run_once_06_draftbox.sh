@@ -1,0 +1,149 @@
+#!/bin/bash
+set -u
+
+# Hide CotEditor from Spotlight
+if [ -d "/Applications/CotEditor.app" ] && [ ! -f "/Applications/CotEditor.app/.metadata_never_index" ]; then
+  sudo touch /Applications/CotEditor.app/.metadata_never_index
+  echo "Hidden CotEditor from Spotlight"
+fi
+
+# Create Draftbox.app for Spotlight launch
+APP_DIR="/Applications/Draftbox.app"
+if [ ! -d "$APP_DIR" ]; then
+  CONTENTS="$APP_DIR/Contents"
+  MACOS="$CONTENTS/MacOS"
+  mkdir -p "$MACOS"
+
+  cat > "$MACOS/Draftbox" << 'EOF'
+#!/bin/bash
+exec "$HOME/.bin/draftnew"
+EOF
+  chmod +x "$MACOS/Draftbox"
+
+  cat > "$CONTENTS/Info.plist" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key>
+  <string>Draftbox</string>
+  <key>CFBundleDisplayName</key>
+  <string>Draftbox</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.rfushimi.draftbox</string>
+  <key>CFBundleVersion</key>
+  <string>1.0</string>
+  <key>CFBundleShortVersionString</key>
+  <string>1.0</string>
+  <key>CFBundleExecutable</key>
+  <string>Draftbox</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>LSBackgroundOnly</key>
+  <true/>
+</dict>
+</plist>
+EOF
+
+  mdimport "$APP_DIR"
+  echo "Created Draftbox.app"
+fi
+
+# Ensure VS Code sideloaded extension symlink
+EXT_SRC="$HOME/.config/draftbox/vscode-extension"
+EXT_DST="$HOME/.vscode/extensions/draftbox-0.0.1"
+if [ -d "$EXT_SRC" ] && [ ! -L "$EXT_DST" ]; then
+  mkdir -p "$(dirname "$EXT_DST")"
+  ln -sf "$EXT_SRC" "$EXT_DST"
+  echo "Linked Draftbox VS Code extension"
+fi
+
+# ---- Draftbox VS Code profile ----
+if ! command -v code >/dev/null 2>&1; then
+  echo "Skipping VS Code profile setup: 'code' CLI not in PATH"
+  exit 0
+fi
+
+mkdir -p "$HOME/Draftbox"
+
+STORAGE_JSON="$HOME/Library/Application Support/Code/User/globalStorage/storage.json"
+
+profile_id() {
+  [ -f "$STORAGE_JSON" ] || { echo ""; return; }
+  python3 - "$STORAGE_JSON" <<'PY'
+import json, sys
+try:
+    with open(sys.argv[1]) as f:
+        d = json.load(f)
+    for p in d.get('userDataProfiles', []):
+        if p.get('name') == 'Draftbox':
+            print(p.get('location', ''))
+            return
+except Exception:
+    pass
+PY
+}
+
+PROFILE_ID="$(profile_id)"
+if [ -z "$PROFILE_ID" ]; then
+  # Profile doesn't exist yet. Installing an extension with --profile creates
+  # it in modern VS Code versions. Run a no-op extension command to bootstrap.
+  code --profile "Draftbox" --install-extension streetsidesoftware.code-spell-checker --force >/dev/null 2>&1 || true
+  PROFILE_ID="$(profile_id)"
+fi
+
+if [ -z "$PROFILE_ID" ]; then
+  echo "Warning: could not create/find Draftbox VS Code profile. Open VS Code once with: code --profile Draftbox"
+  exit 0
+fi
+
+PROFILE_DIR="$HOME/Library/Application Support/Code/User/profiles/$PROFILE_ID"
+mkdir -p "$PROFILE_DIR"
+
+# Install marketplace extensions
+for ext in \
+  patricklee.vsnotes \
+  mgmeyers.markdown-writer-theme \
+  google.geminicodeassist \
+  ra-jeev.write-assist-ai \
+  ltex-plus.vscode-ltex-plus \
+  streetsidesoftware.code-spell-checker; do
+  code --profile "Draftbox" --install-extension "$ext" --force >/dev/null 2>&1 || \
+    echo "  warn: failed to install $ext"
+done
+echo "Ensured Draftbox profile marketplace extensions"
+
+# Copy settings and keybindings into the profile
+cp "$HOME/.config/draftbox/settings.json" "$PROFILE_DIR/settings.json"
+cp "$HOME/.config/draftbox/keybindings.json" "$PROFILE_DIR/keybindings.json"
+echo "Copied settings and keybindings into Draftbox profile"
+
+# Register sideloaded draftbox extension in profile's extensions.json
+PROFILE_DIR="$PROFILE_DIR" python3 <<'PY'
+import json, os, time
+p = os.path.join(os.environ['PROFILE_DIR'], 'extensions.json')
+try:
+    with open(p) as f:
+        exts = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    exts = []
+if not any(e.get('identifier', {}).get('id') == 'undefined_publisher.draftbox' for e in exts):
+    exts.append({
+        'identifier': {'id': 'undefined_publisher.draftbox'},
+        'version': '0.0.1',
+        'location': {
+            '$mid': 1,
+            'path': os.path.expanduser('~/.vscode/extensions/draftbox-0.0.1'),
+            'scheme': 'file',
+        },
+        'relativeLocation': 'draftbox-0.0.1',
+        'metadata': {
+            'installedTimestamp': int(time.time() * 1000),
+            'source': 'local',
+            'private': True,
+        },
+    })
+    with open(p, 'w') as f:
+        json.dump(exts, f)
+    print("Registered draftbox extension in Draftbox profile")
+PY
