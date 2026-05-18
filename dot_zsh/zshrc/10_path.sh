@@ -14,3 +14,6 @@ if (( $+functions[compdef] )); then
     # GCloud completions are handled in env.sh for path, 
     # but zsh-specific completion might need extra care if not handled by OMZ/Zinit
 fi
+
+
+export PATH="/usr/local/bin:$PATH"
