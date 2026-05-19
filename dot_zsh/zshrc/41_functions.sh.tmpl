@@ -45,12 +45,9 @@ update-dotfiles() {
                     git commit -m "dotfiles sync $(date +%Y-%m-%d)" || true
                 fi
                 
-                # Fast-forward pull only. We used to 'pull --rebase -X theirs'
-                # which silently dropped conflicting changes from the other
-                # side. If a pull can't fast-forward, surface it and let the
-                # user resolve by hand.
-                echo "Pulling (ff-only)..."
-                git pull --ff-only origin main || echo "Warning: Failed to fast-forward $repo (resolve manually)"
+                # Standard pull.
+                echo "Pulling..."
+                git pull origin main || echo "Warning: Failed to pull $repo"
                 echo "Pushing..."
                 git push -u origin main || echo "Warning: Failed to push $repo"
                 echo ""
