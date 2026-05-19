@@ -26,7 +26,7 @@ zinit snippet PZTM::completion
 zinit snippet PZTM::directory
 
 zinit ice lucid
-zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-completions
 
 # fzf-tab - MUST load after compinit and before other plugins
 zinit light Aloxaf/fzf-tab
@@ -74,28 +74,10 @@ fi
 # Deferred Plugins (for faster startup)
 # ============================================================================
 zinit ice wait'1' lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
-zinit light zdharma-continuum/fast-syntax-highlighting
+# zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
-
-zinit ice wait'1' lucid
-zinit light hlissner/zsh-autopair
-
-zinit ice wait'1' lucid
-zinit light MichaelAquilina/zsh-you-should-use
-
-zinit ice wait'1' lucid
-zinit light lukechilds/zsh-better-npm-completion
-
-# ============================================================================
-# Utility Plugins (OMZ)
-# ============================================================================
-zinit ice wait'1' lucid
-zinit snippet OMZ::plugins/extract/extract.plugin.zsh
-
-zinit ice wait'1' lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 # ============================================================================
 # Theme (Powerlevel10k)

@@ -37,14 +37,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# deno
-export DENO_INSTALL="$HOME/.deno"
-[ -d "$DENO_INSTALL/bin" ] && export PATH="$DENO_INSTALL/bin:$PATH"
-
 {{ if not .is_corp -}}
 # gcloud (standalone install under XDG_DATA_HOME)
 if [ -d "$HOME/.local/share/google-cloud-sdk/bin" ]; then
@@ -59,6 +51,7 @@ fi
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # LM Studio, Jetski, Antigravity
-export PATH="$PATH:$HOME/.lmstudio/bin"
+
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
 [ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
 [ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
