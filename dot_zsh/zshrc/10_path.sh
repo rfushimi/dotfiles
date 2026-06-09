@@ -10,9 +10,11 @@ fi
 if (( $+functions[compdef] )); then
     # Bun completions
     [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
-    
-    # GCloud completions are handled in env.sh for path, 
-    # but zsh-specific completion might need extra care if not handled by OMZ/Zinit
+fi
+
+# Blaze completions
+if [ -d /google/data ]; then
+   fpath=(/google/src/files/head/depot/google3/devtools/blaze/scripts/zsh_completion $fpath)
 fi
 
 

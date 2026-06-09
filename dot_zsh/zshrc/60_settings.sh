@@ -26,3 +26,7 @@ setopt CORRECT                    # Correct command spelling mistakes
 # Navigation
 setopt auto_cd
 cdpath=(~ ~/dev)
+
+# Completion Cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache

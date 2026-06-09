@@ -13,4 +13,5 @@ private_Library
 dot_hammerspoon
 dot_utils/services
 dot_utils/iterm
+dot_bin/run-gcert2.scpt
 {{- end }}

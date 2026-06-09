@@ -4,11 +4,4 @@ mode: file
 # names after a rename) linger in $HOME.
 remove: true
 
-{{ $is_corp_default := false -}}
-{{ if (or (hasPrefix "fushimi" .chezmoi.username) (hasPrefix "ryohei" .chezmoi.username)) -}}
-{{   $is_corp_default = true -}}
-{{ end -}}
 
-{{ $is_corp := promptBoolOnce . "is_corp" "Is this a corporate machine" $is_corp_default -}}
-data:
-  is_corp: {{ $is_corp }}

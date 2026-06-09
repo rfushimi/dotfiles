@@ -1,6 +1,17 @@
-{{ if .is_corp -}}
-Include ~/corp-dotfiles/ssh/config
-{{ end -}}
+Host main-edit
+    Hostname {{ .chezmoi.username }}.c.googlers.com
+    RemoteCommand shpool attach -f %k
+    RequestTTY yes
+
+Match host *.corp.google.com,*.c.googlers.com exec "find /var/run/ccache/sso-$USER/cookie ~/.sso/cookie -mmin -1200 2>/dev/null | grep -q . && gcertstatus --check_remaining=1h --nocheck_loas2 --quiet || gcert --noloas2"
+
+# Persist connections to Cloudtop.
+Match host *.c.googlers.com
+    ServerAliveInterval 60
+    ServerAliveCountMax 500
+    ControlMaster auto
+    ControlPath ~/.ssh/%r@%h-%p
+    ControlPersist yes
 
 Host main
     HostName main
@@ -85,7 +96,6 @@ Host router
     User root
     Port 22
 
-{{ if .is_corp -}}
 # Corporate Hosts
 Host main-tmux
     HostName {{ .chezmoi.username }}.c.googlers.com
@@ -102,4 +112,3 @@ Host {{ .chezmoi.username }}.c.googlers.com
 	ControlPersist yes
 	ServerAliveInterval 30
 	ServerAliveCountMax 5
-{{ end -}}

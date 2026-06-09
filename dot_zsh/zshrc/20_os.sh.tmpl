@@ -6,12 +6,47 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # macOS specific aliases
 alias finder='open -a Finder ./'
+alias jetski-cli='/usr/local/bin/jetski'
+
+# macOS specific functions (Merged)
+igmm_check_xcode_installation() {
+  local recommended_xcode='/google/src/head/depot/google3/googlemac/iPhone/Maps/Tools/recommended_xcode.py'
+
+  if [[ ! -x "${recommended_xcode}" ]]; then
+      echo "${recommended_xcode} not available."
+      return
+  fi
+
+  if ! "${recommended_xcode}" check; then
+      local recommended_version=$("${recommended_xcode}" current)
+      echo "--------------------------------------------------------------------------------"
+      echo
+      echo "New recommended Xcode version available (${recommended_version})."
+      echo
+      echo "Install the recommended Xcode version using:"
+      echo
+      echo "  $ ${recommended_xcode} install"
+      echo
+      echo "--------------------------------------------------------------------------------"
+  fi
+}
+alias check=igmm_check_xcode_installation
 
 {{ else if eq .chezmoi.os "linux" }}
 # Linux specific settings
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 # Linux specific aliases
 alias open='xdg-open'
+alias g4d="hgd"
+
+# Linux specific completions (Merged)
+[ -f /etc/bash_completion.d/jjd ] && source /etc/bash_completion.d/jjd
+[ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
+
+# Linux specific functions (Merged)
+irabbit() {
+  command iblaze -iblaze_blaze_binary=rabbit "$@" --config=ios_arm64
+}
 
 {{ else if eq .chezmoi.os "windows" }}
 

@@ -9,7 +9,5 @@ ud() {
     source ~/.zshrc
 }
 
-alias sz="source ~/.zshrc"
-
 # Draftbox: quick note-taking in VS Code
 alias draft='code ~/Draftbox --profile "Draftbox"'

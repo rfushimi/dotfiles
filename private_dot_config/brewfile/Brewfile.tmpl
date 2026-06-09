@@ -7,9 +7,7 @@ brew "autoconf"
 brew "automake"
 brew "bash-completion"
 brew "bat"
-{{- if not .is_corp }}
-brew "bitwarden-cli"
-{{- end }}
+
 brew "certifi"
 brew "chezmoi"
 brew "cmake"
@@ -70,9 +68,7 @@ brew "zoxide"
 tap "homebrew/cask"
 cask "android-platform-tools"
 cask "azookey"
-{{- if not .is_corp }}
-cask "bitwarden"
-{{- end }}
+
 cask "coteditor"
 cask "discord"
 cask "font-hackgen"
@@ -108,9 +104,7 @@ cask "kindle"
 
 # App Store applications
 mas "AmorphousDiskMark", id: 1168254295
-{{- if not .is_corp }}
-mas "Bitwarden", id: 1352778147
-{{- end }}
+
 mas "CapCut", id: 1500855883
 mas "Developer", id: 640199958
 mas "Dictionaries", id: 1380563956

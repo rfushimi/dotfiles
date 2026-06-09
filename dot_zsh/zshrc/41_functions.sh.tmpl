@@ -15,9 +15,6 @@ update-dotfiles() {
             "$HOME/.local/share/chezmoi"
             "$HOME/sd"
         )
-        {{ if .is_corp -}}
-        repos+=("$HOME/corp-dotfiles")
-        {{ end -}}
 
         for repo in "${repos[@]}"; do
             if [ -d "$repo" ] && [ -d "$repo/.git" ]; then
@@ -93,4 +90,31 @@ mkcd() {
 # Generic cleanup function for dotfiles-related temp files
 dot-clean() {
     rm -f /tmp/h
+}
+
+# ============================================================================
+# Corp-Specific Functions (Merged)
+# ============================================================================
+notify() {
+    if [ "$(uname)" = "Darwin" ]; then
+        osascript -e "display notification \"${2:-}\" with title \"${1:-}\""
+    else
+        command -v notify-send >/dev/null && notify-send "${1:-}" "${2:-}"
+    fi
+}
+
+google3_path() {
+    echo "${PWD%google3*}google3"
+}
+
+# Run in google3, and go back.
+g3() {
+    local g3p
+    g3p=$(google3_path)
+    if [ -d "$g3p" ]; then
+        (cd "$g3p" && "$@")
+    else
+        echo "Error: google3 directory not found in current path." >&2
+        return 1
+    fi
 }

@@ -37,13 +37,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-{{ if not .is_corp -}}
-# gcloud (standalone install under XDG_DATA_HOME)
-if [ -d "$HOME/.local/share/google-cloud-sdk/bin" ]; then
-    export PATH="$HOME/.local/share/google-cloud-sdk/bin:$PATH"
-fi
-{{ end -}}
-
 # Cargo env
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
@@ -55,3 +48,10 @@ fi
 [ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
 [ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
 [ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Android SDK
+export ANDROID_HOME="$HOME/Android/Sdk"
+if [ -d "$ANDROID_HOME" ]; then
+    export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
+    export ANDROID_ADB="$ANDROID_HOME/platform-tools/adb"
+fi

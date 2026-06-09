@@ -23,10 +23,10 @@ case "$(uname)" in
 esac
 
 # ============================================================================
-# Corp-Specific Settings
+# Corp Settings (Merged)
 # ============================================================================
-{{ if .is_corp -}}
-# Source corp-dotfiles if they exist
-[ -f "$HOME/corp-dotfiles/bashrc" ] && [ -n "$BASH_VERSION" ] && source "$HOME/corp-dotfiles/bashrc"
-[ -f "$HOME/corp-dotfiles/zshrc" ] && [ -n "$ZSH_VERSION" ] && source "$HOME/corp-dotfiles/zshrc"
-{{ end -}}
+export CLOUDTOP_HOST={{ .chezmoi.username }}.c.googlers.com
+export GCM_CREDENTIAL_STORE=plaintext
+
+# import environment variables from .env
+[ -f "$HOME/.env" ] && source "$HOME/.env"
