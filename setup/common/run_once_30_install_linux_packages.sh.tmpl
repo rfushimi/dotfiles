@@ -1,0 +1,19 @@
+#!/bin/bash
+# Install fd, bat, eza on Linux (Debian/Ubuntu/gLinux)
+
+{{ if eq .chezmoi.os "linux" -}}
+if command -v apt-get >/dev/null 2>&1; then
+  echo "Installing developer tools via apt..."
+  sudo apt-get update
+  sudo apt-get install -y fd-find bat eza
+  
+  # Set up symlinks in ~/.local/bin (which is in PATH)
+  mkdir -p "$HOME/.local/bin"
+  if [ -f "/usr/bin/fdfind" ]; then
+    ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd"
+  fi
+  if [ -f "/usr/bin/batcat" ]; then
+    ln -sf /usr/bin/batcat "$HOME/.local/bin/bat"
+  fi
+fi
+{{- end }}

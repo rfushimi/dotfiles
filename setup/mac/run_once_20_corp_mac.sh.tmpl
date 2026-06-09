@@ -1,0 +1,9 @@
+#!/bin/bash
+# Corp macOS setup
+
+{{ if eq .chezmoi.os "darwin" -}}
+if command -v mule >/dev/null 2>&1; then
+  echo "Installing roadwarrior via mule..."
+  sudo mule install roadwarrior
+fi
+{{- end }}
