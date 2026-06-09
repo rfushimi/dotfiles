@@ -47,4 +47,5 @@ compile_commands.json
 # rebased and clobbered changes from other machines).
 .zsh/zshrc/70_ud.sh
 .cache/ud-last-run
-.chezmoi-remove-test
+# Removed 2026-06-09: removed goose script
+.bin/goose
