@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/opt/homebrew/bin/wakeonlan 10:FF:E0:6D:46:32

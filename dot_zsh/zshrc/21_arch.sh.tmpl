@@ -1,8 +1,6 @@
 {{ if eq .chezmoi.arch "arm64" }}
 
 # echo "Architecture: arm64"
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_AUTO_UPDATE_SECS=864000
 
 {{ else if eq .chezmoi.arch "amd64" }}
 
