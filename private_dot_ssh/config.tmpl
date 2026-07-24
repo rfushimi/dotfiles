@@ -63,7 +63,7 @@ Match host mac-studio exec "test \"$TERM_PROGRAM\" = iTerm.app || test \"$LC_TER
 Host mac-studio
     User ryohei
     #HostName 192.168.0.230
-    HostName 100.97.195.68
+    HostName 100.103.57.57
     IdentityFile ~/.ssh/akey
     RequestTTY yes
     RemoteCommand /opt/homebrew/bin/tmux new -A -D -s main
@@ -73,7 +73,7 @@ Host mac-studio
 # TERM_PROGRAM is not propagated.
 Host mac-studio-cc
     User ryohei
-    HostName 100.97.195.68
+    HostName 100.103.57.57
     IdentityFile ~/.ssh/akey
     RequestTTY yes
     RemoteCommand /opt/homebrew/bin/tmux -CC new -A -D -s main
@@ -81,7 +81,7 @@ Host mac-studio-cc
 # Raw shell, no tmux — for scp-like or diagnostic sessions.
 Host mac-studio-no-tmux
     User ryohei
-    HostName 100.97.195.68
+    HostName 100.103.57.57
     IdentityFile ~/.ssh/akey
 
 Host truenas
